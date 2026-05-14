@@ -1,0 +1,380 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <title>サンプルマップ詳細 · Kepler.gl 可視化素材集</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        <meta name="author" content="株式会社AMANE">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-amane-custom/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="basemaps.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="samplemaps.html">
+            
+                <a href="samplemaps.html">
+            
+                    
+                    サンプルマップ詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="basemaps.html">
+            
+                <a href="basemaps.html">
+            
+                    
+                    ベースマップ詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="vector-tiles.html">
+            
+                <a href="vector-tiles.html">
+            
+                    
+                    ベクタータイル詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="howtouse.html">
+            
+                <a href="howtouse.html">
+            
+                    
+                    データ活用の手引き
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >サンプルマップ詳細</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="サンプルマップ詳細">サンプルマップ詳細</h1>
+<p>Kepler.glで利用可能なJSON形式のサンプルマップ。</p>
+<h2 id="利用手順">利用手順</h2>
+<ol>
+<li>読み込みしたいカスタムマップのURLをコピー</li>
+<li>Kepler.gl を開く</li>
+<li>「Layers / レイヤ」タブを開く</li>
+<li>ポップアップ内の「Load Map using URL」タブをクリック</li>
+<li>コピーしたURLをペースト</li>
+<li>緑色の「Fetch」をクリック</li>
+</ol>
+<hr></hr>
+<h2 id="サンプルマップ">サンプルマップ</h2>
+<h3 id="全国ベースマップ">全国ベースマップ</h3>
+<p><strong>URL</strong></p>
+<p><span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/samplemap.json</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span> </p>
+<p><strong>概要</strong></p>
+<p>地理院地図Vectorの標準地図のベースマップ。道路・建物・注記など豊富な地物情報を含むフルカラーの地図スタイルで、地理的コンテキストの把握に適する。</p>
+<p><strong>データ一覧</strong></p>
+<ul>
+<li><a href="vector-tiles.html#鉄道駅">鉄道駅</a></li>
+<li><a href="vector-tiles.html#鉄道路線">鉄道路線</a></li>
+<li><a href="vector-tiles.html#バス停">バス停</a></li>
+<li><a href="vector-tiles.html#バス路線">バス路線</a></li>
+<li><a href="vector-tiles.html#シェアサイクルステーション">シェアサイクルステーション</a></li>
+<li><a href="vector-tiles.html#メッシュ人口">メッシュ人口</a></li>
+<li><a href="vector-tiles.html#町丁目人口">町丁目人口</a></li>
+<li><a href="vector-tiles.html#都市計画用途地域">都市計画用途地域</a></li>
+<li><a href="vector-tiles.html#都市計画区域区分">都市計画区域区分</a></li>
+<li><a href="vector-tiles.html#3d都市モデルplateau-2023-lod0">3D都市モデル（PLATEAU 2023 LOD0）</a></li>
+</ul>
+<p><strong>ベースマップ</strong></p>
+<ul>
+<li><a href="basemaps.html#地理院淡色地図">地理院淡色地図</a></li>
+</ul>
+<p><strong>ライセンス</strong>
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
+<p><strong>配布元</strong>
+<a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
+<h3 id="レクチャー用ベースマップ">レクチャー用ベースマップ</h3>
+<p><strong>URL</strong></p>
+<p><span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/lecturemap.json</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
+<p><strong>概要</strong></p>
+<p>地理院地図Vectorの標準地図のベースマップ。道路・建物・注記など豊富な地物情報を含むフルカラーの地図スタイルで、地理的コンテキストの把握に適する。</p>
+<p><strong>データ一覧</strong></p>
+<ul>
+<li><a href="vector-tiles.html#鉄道駅">鉄道駅</a></li>
+<li><a href="vector-tiles.html#鉄道路線">鉄道路線</a></li>
+<li><a href="vector-tiles.html#バス停">バス停</a></li>
+<li><a href="vector-tiles.html#バス路線">バス路線</a></li>
+<li><a href="vector-tiles.html#メッシュ人口">メッシュ人口</a></li>
+</ul>
+<p><strong>ベースマップ</strong></p>
+<ul>
+<li><a href="basemaps.html#地理院淡色地図">地理院淡色地図</a></li>
+</ul>
+<p><strong>ライセンス</strong>
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
+<p><strong>配布元</strong>
+<a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: はじめに">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="basemaps.html" class="navigation navigation-next " aria-label="Next page: ベースマップ詳細">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"サンプルマップ詳細","level":"1.2","depth":1,"next":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"previous":{"title":"はじめに","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"samplemaps.md","mtime":"2026-05-14T08:01:50.133Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-14T08:03:50.923Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-amane-custom/page-toc.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

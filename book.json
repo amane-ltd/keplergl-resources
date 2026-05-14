@@ -1,0 +1,11 @@
+{
+  "title": "Kepler.gl 可視化素材集",
+  "description": "Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ",
+  "author": "株式会社AMANE",
+  "language": "ja",
+  "root": "./docs",
+  "plugins": ["amane-custom"],
+  "styles": {
+    "website": "styles/website.css"
+  }
+}

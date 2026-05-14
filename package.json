@@ -1,0 +1,19 @@
+{
+  "name": "keplergl-resources",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "honkit build",
+    "serve": "honkit serve",
+    "deploy": "honkit build && gh-pages -d _book"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "gitbook-plugin-amane-custom": "file:gitbook-plugin-amane-custom",
+    "honkit": "^6.1.7"
+  }
+}

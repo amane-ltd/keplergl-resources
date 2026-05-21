@@ -20,7 +20,7 @@ Kepler.glで利用可能なベースマップスタイル。各リソースはJS
 
 **URL**
 
-`https://raw.githubusercontent.com/amane-ltd/georoost-geojson-loader/refs/heads/main/std_vector.json`
+`https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/std_vector.json`
 
 **概要**
 
@@ -39,7 +39,7 @@ Kepler.glで利用可能なベースマップスタイル。各リソースはJS
 
 **URL**
 
-`https://raw.githubusercontent.com/amane-ltd/georoost-geojson-loader/refs/heads/main/pale_vector.json`
+`https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/pale_vector.json`
 
 **概要**
 
@@ -58,7 +58,7 @@ Kepler.glで利用可能なベースマップスタイル。各リソースはJS
 
 **URL**
 
-`https://raw.githubusercontent.com/amane-ltd/georoost-geojson-loader/refs/heads/main/blank_vector.json`
+`https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/blank_vector.json`
 
 **概要**
 

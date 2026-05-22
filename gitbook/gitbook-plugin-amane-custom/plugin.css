@@ -86,15 +86,15 @@
   font-size: 12px;
 }
 
-.book .book-body {
-  right: 260px;
+.book .page-wrapper {
+  padding-right: 260px;
 }
 
 @media (max-width: 1240px) {
   .page-toc {
     display: none;
   }
-  .book .book-body {
-    right: 0;
+  .book .page-wrapper {
+    padding-right: 0;
   }
 }

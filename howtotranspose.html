@@ -1,0 +1,380 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <title>ベクタータイルの前処理方法 · Kepler.gl 可視化素材集</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        <meta name="author" content="株式会社AMANE">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-amane-custom/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="howtouse.html" />
+    
+    
+    <link rel="prev" href="vector-tiles.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="samplemaps.html">
+            
+                <a href="samplemaps.html">
+            
+                    
+                    サンプルマップ詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="basemaps.html">
+            
+                <a href="basemaps.html">
+            
+                    
+                    ベースマップ詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="vector-tiles.html">
+            
+                <a href="vector-tiles.html">
+            
+                    
+                    ベクタータイル詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="howtotranspose.html">
+            
+                <a href="howtotranspose.html">
+            
+                    
+                    ベクタータイルの前処理方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="howtouse.html">
+            
+                <a href="howtouse.html">
+            
+                    
+                    データ活用の手引き
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >ベクタータイルの前処理方法</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ベクタータイルの前処理方法">ベクタータイルの前処理方法</h1>
+<p>本ページは、配信しているベクタータイル（地図データ）が、公的機関の公開する生データ（オープンデータ）から、どのような加工・整備を経て作成されているかをまとめたものである。「変換後のファイルはそのまま地図で見られるが、元は一体どのようなデータで、どれだけの手間をかけて整えられているのか」を把握するための資料である。個々のプログラムやシステム内部の名称には立ち入らず、加工の中身と作業ボリュームが伝わることを重視して記載する。</p>
+<p>各データセットの収録項目・データ型・出典の一覧は<a href="vector-tiles.html">ベクタータイル詳細</a>を参照。</p>
+<hr></hr>
+<h2 id="なぜ前処理が必要なのか">なぜ前処理が必要なのか</h2>
+<p>国や自治体が公開するオープンデータは、そのままでは地図アプリで扱えないことがほとんどである。主な理由は次のとおり。</p>
+<ul>
+<li><strong>項目名が記号のまま</strong>：人口や世帯数などの項目名が、アルファベットと数字の整理番号（長い英数字の管理コード）で表現されており、そのままでは何のデータか分からない。</li>
+<li><strong>分類が数字コードのまま</strong>：鉄道の種類や運行形態などが数字コードで格納されており、意味が読み取れない。</li>
+<li><strong>図形が特殊な形式</strong>：境界線や地点などの図形データが機械処理用の特殊な形式で保存されており、地図アプリがそのまま描画できない。</li>
+<li><strong>数値が文字扱い</strong>：本来は数値であるべき項目が文字列として保存されており、集計や色分け表示ができない。</li>
+<li><strong>地域情報が欠けている</strong>：都道府県名・市区町村名・自治体コードが含まれないデータがある。</li>
+<li><strong>項目が複数ファイルに分散</strong>：一つの対象の情報が、複数のファイルや複数の欄に分かれて格納されている。</li>
+</ul>
+<p>これらを人が読める・地図で扱える形へ整えるのが「前処理」である。全データに共通して行っている整備の一覧、および各データセット固有の加工内容は、<a href="vector-tiles.html">ベクタータイル詳細</a>の各データセットの <strong>前処理</strong> に記載している。</p>
+<hr></hr>
+<h2 id="加工に用いたシステムと進め方（背景情報）">加工に用いたシステムと進め方（背景情報）</h2>
+<p>前処理は、担当者が画面上で1ファイルずつ手作業で加工するのではなく、すべてをプログラムで自動的に処理する仕組み（データパイプライン）を構築して行っている。全体は次の4つの工程で構成される。</p>
+<ol>
+<li><strong>収集（データの取り込み）</strong>：国・自治体が公開する生データを、決められた手順で自動的にダウンロード・取り込みする。公開元の更新に合わせて、同じ手順で取り込み直せるようにしている。</li>
+<li><strong>加工（項目の整理・指標の算出）</strong>：前章で述べた「日本語化」「コード変換」「型の整備」「割合や密度などの指標算出」「行政区分の付与」を、あらかじめ記述したルールに沿って一括で処理する。クラウド上のデータ基盤で大量のデータをまとめて扱えるようにしている。</li>
+<li><strong>地図データ化（ベクタータイルへの変換）</strong>：加工済みのデータを、地図アプリが軽快に表示できるベクタータイル（PMTiles形式）に変換する。全国規模の細かい図形を、拡大・縮小に応じて適切な粒度で表示できるよう最適化している。</li>
+<li><strong>配信（インターネットでの提供）</strong>：変換したベクタータイルをクラウドの配信基盤に置き、URLひとつで全国どこからでも読み込めるようにしている。</li>
+</ol>
+<p>この仕組みには次の利点がある。</p>
+<ul>
+<li><strong>再現性</strong>：加工手順をすべてルール（プログラム）として残しているため、元データが更新されても同じ品質で作り直せる。手作業のような担当者による揺らぎや手順の抜け漏れが起きない。</li>
+<li><strong>規模への対応</strong>：数百項目・全国規模といった大量のデータを、手作業では現実的でない速さと正確さで処理できる。</li>
+<li><strong>検証可能性</strong>：どの項目を、どの生データから、どう変換したかを一つひとつ記録として残せるため、後から根拠を確認できる。</li>
+</ul>
+<h3 id="qgisなどの手作業ツールを使わなかった理由">QGISなどの手作業ツールを使わなかった理由</h3>
+<p>地図データの加工には、QGISのような画面操作型（GUI）のソフトウェアもよく使われる。今回それらを主たる手段として採用しなかったのは、次の理由による。</p>
+<ul>
+<li><strong>項目数・データ量が膨大</strong>：国勢調査だけで数百項目・複数統計表にわたり、対象は全国規模である。これを画面上で1項目ずつ手作業で処理するのは、時間・正確性の両面で現実的ではない。</li>
+<li><strong>繰り返しの更新が前提</strong>：オープンデータは年度ごとに更新される。手作業では更新のたびに同じ操作を最初からやり直す必要があり、労力が積み重なるうえ操作ミスの温床になる。プログラム化しておけば、更新時も同じ手順を再実行するだけで済む。</li>
+<li><strong>作業内容の記録・検証</strong>：手作業では「どの項目をどう変換したか」が担当者の記憶や個別のメモに依存しがちである。プログラムとして残すことで、加工内容そのものが手順書を兼ね、第三者が検証・引き継ぎできる状態になる。</li>
+<li><strong>一貫した品質</strong>：複数のデータセットを通じて、項目名の付け方・コード変換・座標系の統一などを同じルールで揃えるには、共通のルールを一括適用できるプログラム処理が適している。</li>
+</ul>
+<p>QGISが不要という趣旨ではなく、一度きりの確認・可視化には手作業ツールが有効な一方、大量・反復・記録が求められる整備には自動化された仕組みが適している、という役割分担に基づく判断である。</p>
+<hr></hr>
+<h2 id="まとめ">まとめ</h2>
+<ul>
+<li>いずれのデータも、記号だけの生データを人が読める日本語へ翻訳し、コード値を意味のある表記に直し、地図で扱える形へ変換する、という一連の整備を行っている。</li>
+<li>データによっては、複数の統計表・提供元の突き合わせや、割合・密度・将来推計・増減といった元データにない指標の算出、緯度経度・地図メッシュの付与など、単純な変換にとどまらない加工を加えている。</li>
+<li>これらの加工は担当者の手作業ではなく、自動化されたデータパイプラインとして構築しており、元データが更新されても同じ品質で作り直せる再現性を備えている。</li>
+<li>データセットごとの具体的な加工内容は、<a href="vector-tiles.html">ベクタータイル詳細</a>の各データセットの <strong>前処理</strong> を参照。</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="vector-tiles.html" class="navigation navigation-prev " aria-label="Previous page: ベクタータイル詳細">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="howtouse.html" class="navigation navigation-next " aria-label="Next page: データ活用の手引き">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"next":{"title":"データ活用の手引き","level":"1.6","depth":1,"path":"howtouse.md","ref":"howtouse.md","articles":[]},"previous":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"path":"vector-tiles.md","ref":"vector-tiles.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"howtotranspose.md","mtime":"2026-07-14T02:23:30.649Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-07-14T02:51:02.439Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-amane-custom/page-toc.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

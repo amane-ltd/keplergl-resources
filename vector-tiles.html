@@ -52,7 +52,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="howtouse.html" />
+    <link rel="next" href="howtotranspose.html" />
     
     
     <link rel="prev" href="basemaps.html" />
@@ -136,7 +136,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="howtouse.html">
+        <li class="chapter " data-level="1.5" data-path="howtotranspose.html">
+            
+                <a href="howtotranspose.html">
+            
+                    
+                    ベクタータイルの前処理方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="howtouse.html">
             
                 <a href="howtouse.html">
             
@@ -206,6 +219,79 @@
 <li>緑色の「Add Tileset / タイルセットを追加」をクリック</li>
 </ol>
 <hr></hr>
+<h2 id="全データに共通して行った整備">全データに共通して行った整備</h2>
+<p>配信している各ベクタータイルは、公的機関が公開する生データ（オープンデータ）を加工・整備して作成している。全データに共通する整備は次のとおり。前処理を行う背景や利用したシステムについては<a href="howtotranspose.html">ベクタータイルの前処理方法</a>を参照。</p>
+<ul>
+<li><strong>項目名の日本語化</strong>：記号だけの項目名（整理番号）を一つひとつ調べ、意味の分かる日本語の項目名（例：「人口」「事業者」「鉄道区分」）に付け替える。</li>
+<li><strong>コード値の文字への変換</strong>：数字コードで格納された分類を、実際の意味を表す文字（例：「11」→「普通鉄道JR」、「1」→「民間路線バス」）に変換する。</li>
+<li><strong>地図データ（図形）の変換・座標系の統一</strong>：特殊形式で保存された図形（境界線・地点）を地図表示できる形式へ変換し、座標系を一般的な世界測地系（緯度経度・WGS84）に統一する。</li>
+<li><strong>データ型の整備</strong>：文字列として格納された数値項目を、集計・可視化できるよう数値へ整える。</li>
+<li><strong>行政区分などの付与</strong>：都道府県名・市区町村名・自治体コードが含まれないデータには、図形の位置をもとに市区町村と照合して、これらを補完する。</li>
+</ul>
+<p>各データセット固有の加工内容は、以下の各データセットの <strong>前処理</strong> に記載する。あわせて、同じ整備をQGISなどの画面操作型ソフトで手作業した場合の作業時間の目安も付記する。これは全国一括ではなく、特定の必要なエリア（例：1つの市区町村程度）に絞って作業することを想定した概算であり、作業者の習熟度や元データの状態によって変動する。</p>
+<h3 id="データセット別の加工内容とqgisでの作業時間の目安">データセット別の加工内容とQGISでの作業時間の目安</h3>
+<table>
+<thead>
+<tr>
+<th>データセット</th>
+<th>主な加工内容</th>
+<th>QGISで手作業した場合の目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>鉄道駅</td>
+<td>コード変換、乗降客数（13年分）の項目整理、緯度経度・地図メッシュ（H3）付与、行政区分付与、図形変換</td>
+<td>約半日〜1日（4〜8時間）</td>
+</tr>
+<tr>
+<td>鉄道路線</td>
+<td>コード変換、項目名の整理、図形変換</td>
+<td>約1〜2時間</td>
+</tr>
+<tr>
+<td>バス停留所</td>
+<td>最大35系統分の集約、コード変換、緯度経度・地図メッシュ（H3）付与、行政区分付与、図形変換</td>
+<td>約1日（6〜8時間）</td>
+</tr>
+<tr>
+<td>バス路線</td>
+<td>項目名の整理、行政区分付与、図形変換</td>
+<td>約1〜2時間</td>
+</tr>
+<tr>
+<td>シェアサイクルステーション</td>
+<td>複数提供元データの統合、項目名・データ型の整備、行政区分付与、図形変換</td>
+<td>約半日（3〜4時間）</td>
+</tr>
+<tr>
+<td>メッシュ人口</td>
+<td>6統計表・数百項目から約80項目を選定・項目名整理、割合・平均の指標算出、図形変換</td>
+<td>約2〜3日（16〜24時間）</td>
+</tr>
+<tr>
+<td>町丁・字人口</td>
+<td>複数統計表の統合、人口密度・将来推計・増減の算出、項目名整理、図形変換</td>
+<td>約2〜3日（16〜24時間）</td>
+</tr>
+<tr>
+<td>都市計画用途地域</td>
+<td>項目名整理、容積率・建蔽率の数値化、行政区分整備、図形変換</td>
+<td>約2〜3時間</td>
+</tr>
+<tr>
+<td>都市計画区域区分</td>
+<td>項目名整理、行政区分整備、図形変換</td>
+<td>約1〜2時間</td>
+</tr>
+<tr>
+<td>3D都市モデル</td>
+<td>外部提供のベクタータイルをそのまま利用（前処理なし）</td>
+<td>対象外</td>
+</tr>
+</tbody>
+</table>
+<hr></hr>
 <h2 id="交通">交通</h2>
 <h3 id="鉄道駅">鉄道駅</h3>
 <p><img src="images/鉄道駅.png" alt=""></img></p>
@@ -213,6 +299,14 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__rail_station_info_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国の鉄道駅の位置情報をラインデータとして収録したベクタータイル。JR・私鉄・地下鉄・路面電車などの駅を含み、駅名・路線名・事業者名・乗降客数等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>「鉄道区分」「事業者種別」の数字コードを、意味の分かる文字に変換している。</li>
+<li>生データでは年度ごとに別々の記号項目に分かれている乗降客数を、2011年〜2023年の各年として分かりやすい項目名に整理している。</li>
+<li>駅名・路線・事業者・駅コードなどを日本語項目名に整理している。</li>
+<li>都道府県名・市区町村名・自治体コード・緯度経度・地図メッシュ（H3）を、位置情報から付与している。</li>
+<li>駅の図形（地点）を地図表示可能な形式へ変換している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -413,6 +507,14 @@
 </ul>
 <p><strong>データ作成年度</strong>
 鉄道データ：令和7年度（2025年）／駅別乗降客数データ：令和6年度（2024年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約半日〜1日（4〜8時間）。鉄道区分・事業者種別のコード変換に加え、年度ごとに分かれた乗降客数（13年分）の項目整理と、緯度経度・地図メッシュ（H3）の付与に手間がかかる。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -423,6 +525,12 @@
 <span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__rail_line_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国の鉄道路線をラインデータとして収録したベクタータイル。JR・私鉄・地下鉄・路面電車などの路線を含み、路線名・事業者名・区間等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>「鉄道区分」（普通鉄道JR・モノレール・軌道 など全12種）と「事業者種別」（JR新幹線・JR在来線・公営・民営・第三セクター）の数字コードを、意味の分かる文字に変換している。</li>
+<li>路線名・運営会社を日本語項目名に整理している。</li>
+<li>路線の図形（線）を地図表示可能な形式へ変換している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -472,6 +580,14 @@
 </ul>
 <p><strong>データ作成年度</strong>
 令和7年度（2025年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約1〜2時間。項目数が少なく、コード変換と項目名の整理が中心のため比較的短時間で済む。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -482,6 +598,15 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__bus_stop_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国のバス停留所の位置情報をポイントデータとして収録したベクタータイル。停留所名・路線名等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>生データは、1つの停留所に対して最大35系統分の「系統名」と「運行形態」が、それぞれ別々の記号項目に分かれて格納されている。</li>
+<li>運行形態のコード（民間／公営／コミュニティ／その他）を、意味の分かる文字に変換している。</li>
+<li>分散している系統情報を、まとめて1つの「路線系統」項目に集約し、見やすく整理している。</li>
+<li>停留所名・事業者・特記事項を日本語項目名に整理している。</li>
+<li>都道府県名・市区町村名・自治体コード・緯度経度・地図メッシュ（H3）を、位置情報から付与している。</li>
+<li>地点の図形を地図表示可能な形式へ変換している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -591,6 +716,14 @@
 </ul>
 <p><strong>データ作成年度</strong>
 令和4年度（2022年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約1〜2時間。項目数が少なく、コード変換と項目名の整理が中心のため比較的短時間で済む。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -601,6 +734,12 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__bus_line_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国のバス路線をラインデータとして収録したベクタータイル。事業者名等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>生データにはバス事業者名と特記事項のみが記号項目で含まれている。これらを日本語項目名に整理している。</li>
+<li>路線の図形（線）を地図表示可能な形式へ変換している。</li>
+<li>生データに含まれない都道府県名・市区町村名・自治体コードを、位置情報から照合して付与している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -662,6 +801,14 @@
 </ul>
 <p><strong>データ作成年度</strong>
 令和4年度（2022年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約1〜2時間。項目が少なく、項目名の整理と行政区分の空間結合が中心のため比較的短時間で済む。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -672,6 +819,14 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_sharecycle__station_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国のシェアサイクルステーションの位置情報をポイントデータとして収録したベクタータイル。OpenStreet・ドコモ・バイクシェア等のサービスを含み、ステーション名・収容台数等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>複数の提供元のステーション情報を1つに統合している。</li>
+<li>ステーション名・事業者・収容台数・最終更新日などを日本語項目名に整理している。</li>
+<li>収容台数や緯度・経度を、集計・地図表示できるよう数値に整えている。</li>
+<li>都道府県名・市区町村名・自治体コードを、位置情報から付与している。</li>
+<li>ステーションの図形（地点）を地図表示可能な形式へ変換している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -758,6 +913,13 @@
 </ul>
 <p><strong>データ作成年度</strong>
 2025年取得時点（GBFSリアルタイムデータ）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約半日（3〜4時間）。複数の提供元データを1つに統合し、項目名・型をそろえる作業に手間がかかる。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://speakerdeck.com/hiskoh/mobiriteiopundetanohuo-yong-shou-yin-qgisdesieasaikuruwojian-temiyou" target="_blank">モビリティオープンデータの活用手引 ～QGISでシェアサイクルを見てみよう～</a></li>
+<li><a href="https://qiita.com/hiskoh/items/a2df472b6ad5a21a5c51" target="_blank">QGISでシェアサイクルデータGBFSを見てみよう！</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -770,6 +932,14 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_mesh5__all_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>令和2年国勢調査に基づく250mメッシュ(5次メッシュ)単位の人口データをポリゴンとして収録したベクタータイル。メッシュごとの総人口・世帯数等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>生データは、人口・世帯、年齢別人口、住宅・建物、就業状態、就業形態・教育・居住期間、5年前の常住地など、6種類の統計表にまたがる数百項目の記号列で構成されている。</li>
+<li>これらを一つひとつ日本語項目名に整理し、実際に必要な約80項目を厳選して収録している。</li>
+<li>「15歳未満人口の割合(%)」「65歳以上人口の割合(%)」「1世帯当たり人員」など、生データには存在しない割合・平均の指標を新たに算出して追加している。</li>
+<li>メッシュ（網の目状の区画）ごとの境界図形を、地図表示可能な形式に変換している。</li>
+<li>※特に項目数が多く、統計表ごとの記号体系を照合する作業に手間を要したデータである。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <p><strong>A: 人口</strong></p>
 <table>
@@ -1341,16 +1511,39 @@
 </tr>
 </tbody>
 </table>
-<p><strong>GEOMETRY</strong>
-| 項目名 | データ型 | 単位 | 出典 |
-|--------|---------|------|------|
-| geometry | GEOMETRY (Polygon) | EPSG:4326 | 令和2年国勢調査 境界データ _geometry |</p>
+<p><strong>GEOMETRY</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry</td>
+<td>GEOMETRY (Polygon)</td>
+<td>EPSG:4326</td>
+<td>令和2年国勢調査 境界データ _geometry</td>
+</tr>
+</tbody>
+</table>
 <p><strong>元データ</strong></p>
 <ul>
 <li>総務省「令和2年国勢調査」 世界測地系（JGD2011）250mメッシュ</li>
 </ul>
 <p><strong>データ作成年度</strong>
 令和2年（2020年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合でも約2〜3日（16〜24時間）。図形の量はエリアを絞れば減るものの、6種類の統計表にわたる数百項目から必要な約80項目を選び、一つひとつ項目名を整理し、割合・平均などの指標を算出する作業はエリアを絞っても軽減されず、最も手間のかかるデータである。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://lemulus.me/trygis/census-import" target="_blank">国勢調査結果をQGISで表示する手順を画像で解説：無料でGISを使ってみる</a></li>
+<li><a href="https://www.mlit.go.jp/tochi_fudousan_kensetsugyo/content/001400816.pdf" target="_blank">不動産市場動向等の面的データの地域における活用手法に係るガイドライン 参考資料　分析手順の詳細解説集　テーマ３</a></li>
+<li><a href="https://www.mlit.go.jp/tochi_fudousan_kensetsugyo/tochi_fudousan_kensetsugyo_fr5_000001_00006.html" target="_blank">不動産市場動向等の面的データの地域における活用手法に係るガイドライン</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0" target="_blank">PDL1.0</a></p>
 <p><strong>配布元</strong>
@@ -1361,6 +1554,15 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_town__map_with_all_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>令和2年国勢調査に基づく町丁・字等の境界単位の人口データをポリゴンとして収録したベクタータイル。町丁目ごとの総人口・世帯数等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>人口・年齢、世帯構成、世帯人員、世帯の経済構成、住宅の建て方、持ち家／借家、産業別・職業別の就業者数など、複数の統計表を町丁・字の区画コードで突き合わせて1つに統合している。</li>
+<li>各統計表それぞれで、記号列の項目名を日本語へ整理している。</li>
+<li>面積をもとに人口密度（1平方kmあたり）を算出している。</li>
+<li>2025年の推計人口を別途用意し、2020年国勢調査との増減（人数・密度の差分）を算出して追加している。</li>
+<li>「15歳未満・65歳以上などの人口割合(%)」を新たに算出している。</li>
+<li>※複数統計表の統合と、将来推計・増減指標の算出を伴う、加工量の多いデータである。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <p><strong>A: 地域・人口</strong></p>
 <table>
@@ -1630,16 +1832,39 @@
 </tr>
 </tbody>
 </table>
-<p><strong>GEOMETRY</strong>
-| 項目名 | データ型 | 単位 | 出典 |
-|--------|---------|------|------|
-| geometry | GEOMETRY (Polygon) | EPSG:4326 | 令和2年国勢調査 境界データ _geometry |</p>
+<p><strong>GEOMETRY</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry</td>
+<td>GEOMETRY (Polygon)</td>
+<td>EPSG:4326</td>
+<td>令和2年国勢調査 境界データ _geometry</td>
+</tr>
+</tbody>
+</table>
 <p><strong>元データ</strong></p>
 <ul>
 <li>総務省「令和2年国勢調査」 町丁・字等集計</li>
 </ul>
 <p><strong>データ作成年度</strong>
 令和2年（2020年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合でも約2〜3日（16〜24時間）。複数の統計表を区画コードで突き合わせて統合する作業に加え、人口密度・将来推計・増減など元データにない指標を算出する必要があり、これらはエリアを絞っても手間が軽減されない。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://lemulus.me/trygis/census-import" target="_blank">国勢調査結果をQGISで表示する手順を画像で解説：無料でGISを使ってみる</a></li>
+<li><a href="https://www.mlit.go.jp/tochi_fudousan_kensetsugyo/content/001400816.pdf" target="_blank">不動産市場動向等の面的データの地域における活用手法に係るガイドライン 参考資料　分析手順の詳細解説集　テーマ３</a></li>
+<li><a href="https://www.mlit.go.jp/tochi_fudousan_kensetsugyo/tochi_fudousan_kensetsugyo_fr5_000001_00006.html" target="_blank">不動産市場動向等の面的データの地域における活用手法に係るガイドライン</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0" target="_blank">PDL1.0</a></p>
 <p><strong>配布元</strong>
@@ -1652,6 +1877,13 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__toshikeikaku_youto_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国の都市計画用途地域をポリゴンとして収録したベクタータイル。第一種低層住居専用地域・商業地域・工業地域など13種の用途地域区分や建ぺい率・容積率等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>用途地域名や当初決定日・最終告示日などを日本語項目名に整理している。</li>
+<li>容積率・建蔽率を、集計・比較できるよう文字列から数値に整えている。</li>
+<li>用途地域の図形（面）を地図表示可能な形式へ変換している。</li>
+<li>都道府県名・市区町村名・自治体コードを整備している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -1737,6 +1969,14 @@
 </ul>
 <p><strong>データ作成年度</strong>
 令和6年度（2024年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約2〜3時間。項目名の整理と、容積率・建蔽率の数値化、行政区分の整備が中心。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -1747,6 +1987,12 @@
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__toshikeikaku_senbiki_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国の都市計画区域区分（線引き）をポリゴンとして収録したベクタータイル。市街化区域・市街化調整区域の区分属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>区域区分（市街化区域・市街化調整区域）や当初決定日・最終告示日などを日本語項目名に整理している。</li>
+<li>区域の図形（面）を地図表示可能な形式へ変換している。</li>
+<li>都道府県名・市区町村名・自治体コードを整備している。</li>
+</ul>
 <p><strong>データ定義</strong></p>
 <table>
 <thead>
@@ -1820,6 +2066,14 @@
 </ul>
 <p><strong>データ作成年度</strong>
 令和6年度（2024年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約1〜2時間。項目が少なく、項目名の整理と行政区分の整備が中心のため比較的短時間で済む。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -1832,12 +2086,22 @@
 <p><span class="copy-code-wrapper"><code>https://shiworks.xsrv.jp/pmtiles-data/plateau/PLATEAU_2023_LOD0.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>国土交通省Project PLATEAUの2023年度整備データをLOD0（建物フットプリント）としてポリゴンで収録したベクタータイル。建物の用途・構造等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>本データは外部の提供者が公開しているベクタータイルをそのまま利用しており、上記の前処理は行っていない。加工内容・出典は配布元を参照。</li>
+</ul>
 <p><strong>元データ</strong></p>
 <ul>
 <li><a href="https://github.com/shiwaku/mlit-plateau-bldg-pmtiles" target="_blank">https://github.com/shiwaku/mlit-plateau-bldg-pmtiles</a></li>
 </ul>
 <p><strong>データ作成年度</strong>
 令和5年度（2023年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>前処理を行っていないため対象外。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://www.mlit.go.jp/plateau/learning/tpc20-1/" target="_blank">TOPIC20｜QGISプラグインを使って3D都市モデルを可視化する[1/2]｜PLATEAU QGIS Pluginのインストール</a></li>
+</ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
@@ -1874,7 +2138,7 @@
                 </a>
                 
                 
-                <a href="howtouse.html" class="navigation navigation-next " aria-label="Next page: データ活用の手引き">
+                <a href="howtotranspose.html" class="navigation navigation-next " aria-label="Next page: ベクタータイルの前処理方法">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1885,7 +2149,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"next":{"title":"データ活用の手引き","level":"1.5","depth":1,"path":"howtouse.md","ref":"howtouse.md","articles":[]},"previous":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"vector-tiles.md","mtime":"2026-07-07T06:04:05.747Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-07-09T05:43:45.941Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"next":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"path":"howtotranspose.md","ref":"howtotranspose.md","articles":[]},"previous":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"vector-tiles.md","mtime":"2026-07-14T02:50:02.338Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-07-14T02:51:02.439Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

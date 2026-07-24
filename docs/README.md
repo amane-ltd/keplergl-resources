@@ -17,8 +17,8 @@
 
 | 名称 | 配布元 | ライセンス | URL |
 |------|--------|-----------|-----|
-| 全国ベースマップ | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/samplemap.json` |
-| レクチャー用ベースマップ | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/lecturemap.json` |
+| 全国オープンデータマップ | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/samplemap.json` |
+| レクチャー用オープンデータマップ | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/lecturemap.json` |
 
 ## ベースマップ一覧
 

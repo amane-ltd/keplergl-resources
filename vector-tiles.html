@@ -102,7 +102,7 @@
                 <a href="samplemaps.html">
             
                     
-                    サンプルマップ詳細
+                    スターターマップ詳細
             
                 </a>
             
@@ -260,6 +260,11 @@
 <td>約1〜2時間</td>
 </tr>
 <tr>
+<td>道路ネットワーク</td>
+<td>コード変換（5項目）、幅員代表値の算出、項目名整理、図形変換</td>
+<td>約2〜3時間</td>
+</tr>
+<tr>
 <td>シェアサイクルステーション</td>
 <td>複数提供元データの統合、項目名・データ型の整備、行政区分付与、図形変換</td>
 <td>約半日（3〜4時間）</td>
@@ -273,6 +278,11 @@
 <td>町丁・字人口</td>
 <td>複数統計表の統合、人口密度・将来推計・増減の算出、項目名整理、図形変換</td>
 <td>約2〜3日（16〜24時間）</td>
+</tr>
+<tr>
+<td>市区町村境界</td>
+<td>10統計表・約100項目の統合と項目名整理・型整備、町丁・字境界の市区町村への結合、図形変換</td>
+<td>約1〜2日（8〜16時間）</td>
 </tr>
 <tr>
 <td>都市計画用途地域</td>
@@ -813,6 +823,110 @@
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
 <p><strong>配布元</strong>
 <a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
+<h3 id="道路ネットワーク">道路ネットワーク</h3>
+<p><img src="images/道路ネットワーク.png" alt=""></img></p>
+<p><strong>URL</strong></p>
+<p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__road_2024.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
+<p><strong>概要</strong></p>
+<p>全国の道路網をラインデータとして収録したベクタータイル。国道・都道府県道・市区町村道・高速自動車国道などの道路分類や、道路種別・道路状態・幅員・有料区分等の属性を持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>「道路種別」「道路分類」（国道・都道府県道 など全6種）「道路状態」「幅員区分」「有料区分」の数字コードを、意味の分かる文字に変換している。</li>
+<li>生データには区分（例：「5.5m-13m未満」）でしか収録されていない幅員から、集計・比較しやすい代表値（メートル換算）を新たに算出して追加している。</li>
+<li>道路種別・分類・データ登録日などを日本語項目名に整理している。</li>
+<li>道路の図形（線）を地図表示可能な形式へ変換し、座標系を世界測地系（EPSG:4326）に統一している。</li>
+</ul>
+<p><strong>データ定義</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01_データ登録日</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_001</td>
+</tr>
+<tr>
+<td>02_道路種別</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_002</td>
+</tr>
+<tr>
+<td>03_道路分類</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_003</td>
+</tr>
+<tr>
+<td>04_道路状態</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_004</td>
+</tr>
+<tr>
+<td>05_階層順</td>
+<td>INTEGER</td>
+<td>-</td>
+<td>道路データ N13_005</td>
+</tr>
+<tr>
+<td>06_幅員区分</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_006</td>
+</tr>
+<tr>
+<td>07_幅員(代表値)</td>
+<td>FLOAT</td>
+<td>m</td>
+<td>加工（幅員区分から算出）</td>
+</tr>
+<tr>
+<td>08_有料区分</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_007</td>
+</tr>
+<tr>
+<td>09_地物の二次メッシュ番号</td>
+<td>STRING</td>
+<td>-</td>
+<td>道路データ N13_008</td>
+</tr>
+<tr>
+<td>geometry</td>
+<td>GEOMETRY (LineString)</td>
+<td>EPSG:4326</td>
+<td>道路データ _geometry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>元データ</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N13-2024.html" target="_blank">国土交通省国土数値情報ダウンロードサイト 道路データ</a></li>
+</ul>
+<p><strong>データ作成年度</strong>
+令和6年度（2024年度）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合で約2〜3時間。道路種別・分類・状態・幅員区分・有料区分の5項目のコード変換と、幅員区分からの代表値算出、項目名の整理が中心。ただし道路は地物数が多いため、対象エリアが広いと図形の取り込み・処理に時間がかかる。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://nlftp.mlit.go.jp/ksj/other/QGIS_manual.pdf" target="_blank">QGISでの国土数値情報利用方法</a></li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/manual/manual.html" target="_blank">QGISによる国土数値情報活用マニュアル</a></li>
+<li><a href="https://qgis.mierune.co.jp/posts/howto_1_download_ksj-data" target="_blank">国交省提供データをQGISに！国土数値情報データのダウンロードとQGISへの追加方法の解説</a></li>
+</ul>
+<p><strong>ライセンス</strong>
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
+<p><strong>配布元</strong>
+<a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
 <h3 id="シェアサイクルステーション">シェアサイクルステーション</h3>
 <p><img src="images/シェアサイクル.png" alt=""></img></p>
 <p><strong>URL</strong></p>
@@ -912,7 +1026,7 @@
 <li><a href="https://ckan.odpt.org/dataset/c_bikeshare_gbfs-d-nationwide-bikeshare/resource/addf55c2-d764-4d2c-9a89-f2a610663953" target="_blank">公共交通オープンデータセンター ドコモ・バイクシェア バイクシェア関連情報(station_information)</a></li>
 </ul>
 <p><strong>データ作成年度</strong>
-2025年取得時点（GBFSリアルタイムデータ）</p>
+2026年取得時点（GBFSリアルタイムデータ）</p>
 <p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
 <p>特定エリアに絞った場合で約半日（3〜4時間）。複数の提供元データを1つに統合し、項目名・型をそろえる作業に手間がかかる。</p>
 <p><strong>QGISの作業方法を知るための参考資料</strong></p>
@@ -931,7 +1045,7 @@
 <p><strong>URL</strong></p>
 <p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_mesh5__all_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
-<p>令和2年国勢調査に基づく250mメッシュ(5次メッシュ)単位の人口データをポリゴンとして収録したベクタータイル。メッシュごとの総人口・世帯数等の属性を持つ。</p>
+<p>令和2年国勢調査に基づく250mメッシュ(5次メッシュ)単位の人口データをポリゴンとして収録したベクタータイル。メッシュごとの総人口・世帯数等の属性を持つ。また、国勢調査に基づき、2070年までの250mメッシュ別の将来推計人口も追加。</p>
 <p><strong>前処理</strong></p>
 <ul>
 <li>生データは、人口・世帯、年齢別人口、住宅・建物、就業状態、就業形態・教育・居住期間、5年前の常住地など、6種類の統計表にまたがる数百項目の記号列で構成されている。</li>
@@ -1511,6 +1625,54 @@
 </tr>
 </tbody>
 </table>
+<p><strong>G: 将来推計人口</strong>
+| 項目名                          | データ型 | 単位 | 出典 |
+| ------------------------------- | -------- | ---- | ---- |
+| G01_2030年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2030 |
+| G02_2040年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2040 |
+| G03_2050年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2050 |
+| G04_2060年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2060 |
+| G05_2070年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2070 |
+| G06_2030年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2030 |
+| G07_2040年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2040 |
+| G08_2050年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2050 |
+| G09_2060年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2060 |
+| G10_2070年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2070 |
+| G11_2030年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2030 |
+| G12_2040年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2040 |
+| G13_2050年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2050 |
+| G14_2060年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2060 |
+| G15_2070年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2070 |
+| G16_2030年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2030 |
+| G17_2040年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2040 |
+| G18_2050年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2050 |
+| G19_2060年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2060 |
+| G20_2070年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2070 |
+| G21_2030年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2030 |
+| G22_2040年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2040 |
+| G23_2050年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2050 |
+| G24_2060年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2060 |
+| G25_2070年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2070 |
+| G26_2030年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2030 |
+| G27_2040年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2040 |
+| G28_2050年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2050 |
+| G29_2060年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2060 |
+| G30_2070年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2070 |
+| G31_2030年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2030 |
+| G32_2040年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2040 |
+| G33_2050年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2050 |
+| G34_2060年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2060 |
+| G35_2070年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2070 |
+| G36_2030年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2030 |
+| G37_2040年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2040 |
+| G38_2050年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2050 |
+| G39_2060年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2060 |
+| G40_2070年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2070 |
+| G41_2030年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2030 |
+| G42_2040年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2040 |
+| G43_2050年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2050 |
+| G44_2060年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2060 |
+| G45_2070年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2070 |</p>
 <p><strong>GEOMETRY</strong></p>
 <table>
 <thead>
@@ -1533,9 +1695,10 @@
 <p><strong>元データ</strong></p>
 <ul>
 <li>総務省「令和2年国勢調査」 世界測地系（JGD2011）250mメッシュ</li>
+<li><a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-mesh250r6.html" target="_blank">国土交通省国土数値情報ダウンロードサイト 250mメッシュ別将来推計人口（R6国政局推計）</a></li>
 </ul>
-<p><strong>データ作成年度</strong>
-令和2年（2020年）</p>
+<p><strong>データ作成年度</strong></p>
+<p>国勢調査：令和2年（2020年）／将来推計人口：令和6年度（2024年）</p>
 <p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
 <p>特定エリアに絞った場合でも約2〜3日（16〜24時間）。図形の量はエリアを絞れば減るものの、6種類の統計表にわたる数百項目から必要な約80項目を選び、一つひとつ項目名を整理し、割合・平均などの指標を算出する作業はエリアを絞っても軽減されず、最も手間のかかるデータである。</p>
 <p><strong>QGISの作業方法を知るための参考資料</strong></p>
@@ -1869,6 +2032,754 @@
 <a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0" target="_blank">PDL1.0</a></p>
 <p><strong>配布元</strong>
 <a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
+<h3 id="市区町村境界">市区町村境界</h3>
+<p><img src="images/市区町村境界.png" alt=""></img></p>
+<p><strong>URL</strong></p>
+<p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_town__map_city_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
+<p><strong>概要</strong></p>
+<p>全国の市区町村境界をポリゴンとして収録したベクタータイル。総人口・世帯、自然環境、経済基盤、行財政、教育、労働、居住、健康・医療、福祉など、市区町村単位の社会・人口統計指標（約100項目）を属性として持つ。</p>
+<p><strong>前処理</strong></p>
+<ul>
+<li>人口・世帯／自然環境／経済基盤／行財政／教育／労働／文化・スポーツ／居住／健康・医療／福祉・社会保障の10分野にまたがる社会・人口統計体系の指標を、市区町村コードで1つに統合している。</li>
+<li>記号だけの整理番号で格納された項目を、意味の分かる日本語項目名に整理している。</li>
+<li>文字列として格納された数値を、集計・可視化できるよう数値型（整数・小数）に整えている。</li>
+<li>都道府県番号と市区町村番号から全国地方公共団体コード（jcode）を生成している。</li>
+<li>令和2年国勢調査の町丁・字等の境界を市区町村単位に結合（ディゾルブ）し、市区町村界のポリゴンを作成している。</li>
+<li>図形を地図表示可能な形式へ変換し、座標系を世界測地系（EPSG:4326）に統一している。</li>
+</ul>
+<p><strong>データ定義</strong></p>
+<p><strong>地域</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jcode</td>
+<td>STRING</td>
+<td>-</td>
+<td>加工（都道府県番号＋市区町村番号）</td>
+</tr>
+<tr>
+<td>pref_name</td>
+<td>STRING</td>
+<td>-</td>
+<td>統計でみる市区町村のすがた 都道府県名</td>
+</tr>
+<tr>
+<td>city_name</td>
+<td>STRING</td>
+<td>-</td>
+<td>統計でみる市区町村のすがた 市区町村名</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A: 人口・世帯</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A01_A00_総人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A02_日本人人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A03_外国人人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A04_住民基本台帳人口（総数）</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A05_15歳未満人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A06_15〜64歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A07_65歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A08_人口集中地区人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A09_出生数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A10_死亡数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A11_転入者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A12_転出者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A13_昼間人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A14_総世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A15_一般世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A16_核家族世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A17_単独世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A18_65歳以上世帯員のいる核家族世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A19_夫65歳以上妻60歳以上の夫婦のみ世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A20_65歳以上単独世帯数</td>
+<td>INTEGER</td>
+<td>世帯</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A21_婚姻件数</td>
+<td>INTEGER</td>
+<td>件</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>A22_離婚件数</td>
+<td>INTEGER</td>
+<td>件</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>B: 自然環境</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B01_総面積（km2）</td>
+<td>FLOAT</td>
+<td>km²</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>B02_可住地面積（km2）</td>
+<td>FLOAT</td>
+<td>km²</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>C: 経済基盤</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C01_課税対象所得（百万円）</td>
+<td>INTEGER</td>
+<td>百万円</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C02_納税義務者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C03_事業所数（民営）</td>
+<td>INTEGER</td>
+<td>所</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C04_従業者数（民営）</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C05_耕地面積（km2）</td>
+<td>FLOAT</td>
+<td>km²</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C06_製造品出荷額等（百万円）</td>
+<td>INTEGER</td>
+<td>百万円</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C07_製造業従業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C08_商業年間商品販売額（百万円）</td>
+<td>INTEGER</td>
+<td>百万円</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C09_商業事業所数</td>
+<td>INTEGER</td>
+<td>所</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>C10_商業従業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>D: 行財政</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D01_財政力指数</td>
+<td>FLOAT</td>
+<td>-</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>D02_実質収支比率（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>D03_実質公債費比率（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>D04_歳入決算総額（百万円）</td>
+<td>INTEGER</td>
+<td>百万円</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>D05_歳出決算総額（百万円）</td>
+<td>INTEGER</td>
+<td>百万円</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>D06_地方税（百万円）</td>
+<td>INTEGER</td>
+<td>百万円</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>E: 教育</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E01_幼稚園数</td>
+<td>INTEGER</td>
+<td>園</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E02_幼稚園在園者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E03_小学校数</td>
+<td>INTEGER</td>
+<td>校</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E04_小学校教員数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E05_小学校児童数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E06_中学校数</td>
+<td>INTEGER</td>
+<td>校</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E07_中学校教員数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E08_中学校生徒数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E09_高等学校数</td>
+<td>INTEGER</td>
+<td>校</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>E10_高等学校生徒数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>F: 労働</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F01_労働力人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F02_就業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F03_完全失業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F04_第1次産業就業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F05_第2次産業就業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F06_第3次産業就業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F07_雇用者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F08_役員数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F09_雇人のある業主数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F10_雇人のない業主数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F11_家族従業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F12_自市区町村で従業している就業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F13_他市区町村への通勤者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F14_従業地による就業者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>F15_他市区町村からの通勤者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>G: 文化・スポーツ</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G01_公民館数</td>
+<td>INTEGER</td>
+<td>館</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>G02_図書館数</td>
+<td>INTEGER</td>
+<td>館</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>H: 居住</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H01_居住世帯あり住宅数</td>
+<td>INTEGER</td>
+<td>戸</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H02_持ち家数</td>
+<td>INTEGER</td>
+<td>戸</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H03_借家数</td>
+<td>INTEGER</td>
+<td>戸</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H04_1住宅当たり延べ面積（m2）</td>
+<td>FLOAT</td>
+<td>m²</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H05_非水洗化人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H06_ごみ計画収集人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H07_ごみ総排出量（t）</td>
+<td>FLOAT</td>
+<td>t</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H08_ごみのリサイクル率（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H09_小売店数</td>
+<td>INTEGER</td>
+<td>店</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H10_飲食店数</td>
+<td>INTEGER</td>
+<td>店</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H11_大型小売店数</td>
+<td>INTEGER</td>
+<td>店</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>H12_百貨店・総合スーパー数</td>
+<td>INTEGER</td>
+<td>店</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>I: 健康・医療</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I01_一般病院数</td>
+<td>INTEGER</td>
+<td>施設</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>I02_一般診療所数</td>
+<td>INTEGER</td>
+<td>施設</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>I03_歯科診療所数</td>
+<td>INTEGER</td>
+<td>施設</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>I04_医師数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>I05_歯科医師数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>I06_薬剤師数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>J: 福祉・社会保障</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>J01_介護老人福祉施設数</td>
+<td>INTEGER</td>
+<td>施設</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>J02_児童福祉施設等数</td>
+<td>INTEGER</td>
+<td>施設</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>J03_保育所等数</td>
+<td>INTEGER</td>
+<td>施設</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+<tr>
+<td>J04_国民健康保険被保険者数</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>統計でみる市区町村のすがた</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GEOMETRY</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry</td>
+<td>GEOMETRY (Polygon)</td>
+<td>EPSG:4326</td>
+<td>令和2年国勢調査 境界データ（市区町村単位に結合） _geometry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>元データ</strong></p>
+<ul>
+<li><a href="https://www.e-stat.go.jp/regional-statistics/ssdsview/municipality" target="_blank">総務省 社会・人口統計体系「統計でみる市区町村のすがた」（e-Stat 地域統計）</a></li>
+<li>総務省「令和2年国勢調査」町丁・字等別境界データ（市区町村単位に結合して使用）</li>
+</ul>
+<p><strong>データ作成年度</strong>
+統計でみる市区町村のすがた：2025年公表版／境界データ：令和2年（2020年）</p>
+<p><strong>QGISで手作業した場合の作業時間の目安</strong></p>
+<p>特定エリアに絞った場合でも約1〜2日（8〜16時間）。10分野に分かれた統計表を市区町村コードで突き合わせて統合し、約100項目の記号項目を一つひとつ日本語項目名に整理・数値型に変換する作業が中心で、これらはエリアを絞っても軽減されない。加えて、町丁・字境界を市区町村単位に結合（ディゾルブ）する処理も必要となる。</p>
+<p><strong>QGISの作業方法を知るための参考資料</strong></p>
+<ul>
+<li><a href="https://lemulus.me/trygis/census-import" target="_blank">国勢調査結果をQGISで表示する手順を画像で解説：無料でGISを使ってみる</a></li>
+<li><a href="https://www.e-stat.go.jp/regional-statistics/ssdsview" target="_blank">e-Stat 地域統計（社会・人口統計体系）</a></li>
+</ul>
+<p><strong>ライセンス</strong>
+<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0" target="_blank">PDL1.0</a></p>
+<p><strong>配布元</strong>
+<a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
 <hr></hr>
 <h2 id="都市計画">都市計画</h2>
 <h3 id="都市計画用途地域">都市計画用途地域</h3>
@@ -2149,7 +3060,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"next":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"path":"howtotranspose.md","ref":"howtotranspose.md","articles":[]},"previous":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"vector-tiles.md","mtime":"2026-07-14T02:50:02.338Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-07-27T01:51:31.478Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"next":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"path":"howtotranspose.md","ref":"howtotranspose.md","articles":[]},"previous":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"vector-tiles.md","mtime":"2026-08-10T08:27:50.626Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-08-10T08:38:14.334Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

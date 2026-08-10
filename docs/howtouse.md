@@ -12,7 +12,7 @@
 
 ## 作成手順
 
-1. 各ユースケースごとのサンプルマップのURLをコピー
+1. 各ユースケースごとのスターターマップのURLをコピー
 2. [kepler.gl](https://kepler.gl/demo)を開く
 3. `Add Data` > `Load Map using URL`で、コピーしたURLをペースト
 
@@ -23,7 +23,7 @@
 
 ![](images/demo01.png)
 
-### サンプルマップのURL
+### スターターマップのURL
 
 `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/demomap01.json` 
 
@@ -43,7 +43,7 @@
 
 ![](images/demo02.png)
 
-### サンプルマップのURL
+### スターターマップのURL
 
 `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/demomap02.json` 
 
@@ -65,7 +65,7 @@
 
 ![](images/demo03.png)
 
-### サンプルマップのURL
+### スターターマップのURL
 
 `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/demomap03.json` 
 
@@ -87,7 +87,7 @@
 
 ![](images/demo04.png)
 
-### サンプルマップのURL
+### スターターマップのURL
 
 `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/samplemaps/demomap04.json` 
 

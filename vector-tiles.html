@@ -826,7 +826,7 @@
 <h3 id="道路ネットワーク">道路ネットワーク</h3>
 <p><img src="images/道路ネットワーク.png" alt=""></img></p>
 <p><strong>URL</strong></p>
-<p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__road_2024.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
+<p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__road_2024_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国の道路網をラインデータとして収録したベクタータイル。国道・都道府県道・市区町村道・高速自動車国道などの道路分類や、道路種別・道路状態・幅員・有料区分等の属性を持つ。</p>
 <p><strong>前処理</strong></p>
@@ -1625,54 +1625,289 @@
 </tr>
 </tbody>
 </table>
-<p><strong>G: 将来推計人口</strong>
-| 項目名                          | データ型 | 単位 | 出典 |
-| ------------------------------- | -------- | ---- | ---- |
-| G01_2030年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2030 |
-| G02_2040年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2040 |
-| G03_2050年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2050 |
-| G04_2060年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2060 |
-| G05_2070年総数人口              | INTEGER  | 人 | 250mメッシュ別将来推計人口 PT00_2070 |
-| G06_2030年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2030 |
-| G07_2040年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2040 |
-| G08_2050年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2050 |
-| G09_2060年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2060 |
-| G10_2070年0〜14歳人口           | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTA_2070 |
-| G11_2030年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2030 |
-| G12_2040年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2040 |
-| G13_2050年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2050 |
-| G14_2060年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2060 |
-| G15_2070年15〜64歳人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTB_2070 |
-| G16_2030年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2030 |
-| G17_2040年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2040 |
-| G18_2050年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2050 |
-| G19_2060年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2060 |
-| G20_2070年65歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTC_2070 |
-| G21_2030年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2030 |
-| G22_2040年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2040 |
-| G23_2050年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2050 |
-| G24_2060年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2060 |
-| G25_2070年75歳以上人口          | INTEGER  | 人 | 250mメッシュ別将来推計人口 PTD_2070 |
-| G26_2030年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2030 |
-| G27_2040年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2040 |
-| G28_2050年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2050 |
-| G29_2060年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2060 |
-| G30_2070年0〜14歳人口割合（%）  | FLOAT    | % | 250mメッシュ別将来推計人口 RTA_2070 |
-| G31_2030年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2030 |
-| G32_2040年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2040 |
-| G33_2050年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2050 |
-| G34_2060年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2060 |
-| G35_2070年15〜64歳人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTB_2070 |
-| G36_2030年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2030 |
-| G37_2040年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2040 |
-| G38_2050年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2050 |
-| G39_2060年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2060 |
-| G40_2070年65歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTC_2070 |
-| G41_2030年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2030 |
-| G42_2040年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2040 |
-| G43_2050年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2050 |
-| G44_2060年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2060 |
-| G45_2070年75歳以上人口割合（%） | FLOAT    | % | 250mメッシュ別将来推計人口 RTD_2070 |</p>
+<p><strong>G: 将来推計人口</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>データ型</th>
+<th>単位</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G01_2030年総数人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PT00_2030</td>
+</tr>
+<tr>
+<td>G02_2040年総数人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PT00_2040</td>
+</tr>
+<tr>
+<td>G03_2050年総数人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PT00_2050</td>
+</tr>
+<tr>
+<td>G04_2060年総数人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PT00_2060</td>
+</tr>
+<tr>
+<td>G05_2070年総数人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PT00_2070</td>
+</tr>
+<tr>
+<td>G06_2030年0〜14歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTA_2030</td>
+</tr>
+<tr>
+<td>G07_2040年0〜14歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTA_2040</td>
+</tr>
+<tr>
+<td>G08_2050年0〜14歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTA_2050</td>
+</tr>
+<tr>
+<td>G09_2060年0〜14歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTA_2060</td>
+</tr>
+<tr>
+<td>G10_2070年0〜14歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTA_2070</td>
+</tr>
+<tr>
+<td>G11_2030年15〜64歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTB_2030</td>
+</tr>
+<tr>
+<td>G12_2040年15〜64歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTB_2040</td>
+</tr>
+<tr>
+<td>G13_2050年15〜64歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTB_2050</td>
+</tr>
+<tr>
+<td>G14_2060年15〜64歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTB_2060</td>
+</tr>
+<tr>
+<td>G15_2070年15〜64歳人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTB_2070</td>
+</tr>
+<tr>
+<td>G16_2030年65歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTC_2030</td>
+</tr>
+<tr>
+<td>G17_2040年65歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTC_2040</td>
+</tr>
+<tr>
+<td>G18_2050年65歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTC_2050</td>
+</tr>
+<tr>
+<td>G19_2060年65歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTC_2060</td>
+</tr>
+<tr>
+<td>G20_2070年65歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTC_2070</td>
+</tr>
+<tr>
+<td>G21_2030年75歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTD_2030</td>
+</tr>
+<tr>
+<td>G22_2040年75歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTD_2040</td>
+</tr>
+<tr>
+<td>G23_2050年75歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTD_2050</td>
+</tr>
+<tr>
+<td>G24_2060年75歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTD_2060</td>
+</tr>
+<tr>
+<td>G25_2070年75歳以上人口</td>
+<td>INTEGER</td>
+<td>人</td>
+<td>250mメッシュ別将来推計人口 PTD_2070</td>
+</tr>
+<tr>
+<td>G26_2030年0〜14歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTA_2030</td>
+</tr>
+<tr>
+<td>G27_2040年0〜14歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTA_2040</td>
+</tr>
+<tr>
+<td>G28_2050年0〜14歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTA_2050</td>
+</tr>
+<tr>
+<td>G29_2060年0〜14歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTA_2060</td>
+</tr>
+<tr>
+<td>G30_2070年0〜14歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTA_2070</td>
+</tr>
+<tr>
+<td>G31_2030年15〜64歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTB_2030</td>
+</tr>
+<tr>
+<td>G32_2040年15〜64歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTB_2040</td>
+</tr>
+<tr>
+<td>G33_2050年15〜64歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTB_2050</td>
+</tr>
+<tr>
+<td>G34_2060年15〜64歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTB_2060</td>
+</tr>
+<tr>
+<td>G35_2070年15〜64歳人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTB_2070</td>
+</tr>
+<tr>
+<td>G36_2030年65歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTC_2030</td>
+</tr>
+<tr>
+<td>G37_2040年65歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTC_2040</td>
+</tr>
+<tr>
+<td>G38_2050年65歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTC_2050</td>
+</tr>
+<tr>
+<td>G39_2060年65歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTC_2060</td>
+</tr>
+<tr>
+<td>G40_2070年65歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTC_2070</td>
+</tr>
+<tr>
+<td>G41_2030年75歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTD_2030</td>
+</tr>
+<tr>
+<td>G42_2040年75歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTD_2040</td>
+</tr>
+<tr>
+<td>G43_2050年75歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTD_2050</td>
+</tr>
+<tr>
+<td>G44_2060年75歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTD_2060</td>
+</tr>
+<tr>
+<td>G45_2070年75歳以上人口割合（%）</td>
+<td>FLOAT</td>
+<td>%</td>
+<td>250mメッシュ別将来推計人口 RTD_2070</td>
+</tr>
+</tbody>
+</table>
 <p><strong>GEOMETRY</strong></p>
 <table>
 <thead>
@@ -2035,7 +2270,7 @@
 <h3 id="市区町村境界">市区町村境界</h3>
 <p><img src="images/市区町村境界.png" alt=""></img></p>
 <p><strong>URL</strong></p>
-<p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_town__map_city_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
+<p><span class="copy-code-wrapper"><code>https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__map_2025_city_pmt.pmtiles</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
 <p>全国の市区町村境界をポリゴンとして収録したベクタータイル。総人口・世帯、自然環境、経済基盤、行財政、教育、労働、居住、健康・医療、福祉など、市区町村単位の社会・人口統計指標（約100項目）を属性として持つ。</p>
 <p><strong>前処理</strong></p>
@@ -2060,19 +2295,19 @@
 </thead>
 <tbody>
 <tr>
-<td>jcode</td>
+<td>A01_JCODE</td>
 <td>STRING</td>
 <td>-</td>
 <td>加工（都道府県番号＋市区町村番号）</td>
 </tr>
 <tr>
-<td>pref_name</td>
+<td>A02_都道府県名</td>
 <td>STRING</td>
 <td>-</td>
 <td>統計でみる市区町村のすがた 都道府県名</td>
 </tr>
 <tr>
-<td>city_name</td>
+<td>A03_市区町村名</td>
 <td>STRING</td>
 <td>-</td>
 <td>統計でみる市区町村のすがた 市区町村名</td>
@@ -2091,133 +2326,133 @@
 </thead>
 <tbody>
 <tr>
-<td>A01_A00_総人口</td>
+<td>A04_住民基本台帳人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A02_日本人人口</td>
+<td>A05_総人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A03_外国人人口</td>
+<td>A06_日本人人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A04_住民基本台帳人口（総数）</td>
+<td>A07_外国人人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A05_15歳未満人口</td>
+<td>A08_15歳未満人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A06_15〜64歳人口</td>
+<td>A09_15〜64歳人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A07_65歳以上人口</td>
+<td>A10_65歳以上人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A08_人口集中地区人口</td>
+<td>A11_人口集中地区人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A09_出生数</td>
+<td>A12_出生数</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A10_死亡数</td>
+<td>A13_死亡数</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A11_転入者数</td>
+<td>A14_転入者数</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A12_転出者数</td>
+<td>A15_転出者数</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A13_昼間人口</td>
+<td>A16_昼間人口</td>
 <td>INTEGER</td>
 <td>人</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A14_総世帯数</td>
+<td>A17_総世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A15_一般世帯数</td>
+<td>A18_一般世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A16_核家族世帯数</td>
+<td>A19_核家族世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A17_単独世帯数</td>
+<td>A20_単独世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A18_65歳以上世帯員のいる核家族世帯数</td>
+<td>A21_65歳以上世帯員のいる核家族世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A19_夫65歳以上妻60歳以上の夫婦のみ世帯数</td>
+<td>A22_夫65歳以上妻60歳以上の夫婦のみ世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A20_65歳以上単独世帯数</td>
+<td>A23_65歳以上単独世帯数</td>
 <td>INTEGER</td>
 <td>世帯</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A21_婚姻件数</td>
+<td>A24_婚姻件数</td>
 <td>INTEGER</td>
 <td>件</td>
 <td>統計でみる市区町村のすがた</td>
 </tr>
 <tr>
-<td>A22_離婚件数</td>
+<td>A25_離婚件数</td>
 <td>INTEGER</td>
 <td>件</td>
 <td>統計でみる市区町村のすがた</td>
@@ -3060,7 +3295,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"next":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"path":"howtotranspose.md","ref":"howtotranspose.md","articles":[]},"previous":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"vector-tiles.md","mtime":"2026-08-10T08:27:50.626Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-08-10T08:38:14.334Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"next":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"path":"howtotranspose.md","ref":"howtotranspose.md","articles":[]},"previous":{"title":"ベースマップ詳細","level":"1.3","depth":1,"path":"basemaps.md","ref":"basemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ"},"file":{"path":"vector-tiles.md","mtime":"2026-08-10T09:35:01.990Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-08-10T13:13:52.467Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

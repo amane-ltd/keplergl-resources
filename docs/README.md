@@ -37,8 +37,10 @@
 | ⭐︎バス停留所 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__bus_stop_pmt.pmtiles` |
 | ⭐︎バス路線 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__bus_line_pmt.pmtiles` |
 | シェアサイクルステーション | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_sharecycle__station_pmt.pmtiles` |
+| 道路ネットワーク | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__road_2024_pmt.pmtiles` |
 | ⭐︎メッシュ人口 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_mesh5__all_pmt.pmtiles` |
 | 町丁・字人口 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_census2020_town__map_with_all_pmt.pmtiles` |
+| 市区町村境界 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__map_2025_city_pmt.pmtiles` |
 | 都市計画用途地域 | [株式会社AMANE](https://amane.ltd/) | [PDL1.0](https://www.digital.go.jp/resources/open_data/public_data_license_v1.0) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__toshikeikaku_youto_pmt.pmtiles` |
 | 都市計画区域区分 | [株式会社AMANE](https://amane.ltd/) | [PDL1.0](https://www.digital.go.jp/resources/open_data/public_data_license_v1.0) | `https://d1ea95yc41zb9r.cloudfront.net/pmtiles/jpn_kokudo__toshikeikaku_senbiki_pmt.pmtiles` |
 | 3D都市モデル（PLATEAU 2023 LOD0） | [shiwaku (Yohei Shiwaku)](https://github.com/shiwaku) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://shiworks.xsrv.jp/pmtiles-data/plateau/PLATEAU_2023_LOD0.pmtiles` |

@@ -31,11 +31,13 @@ Kepler.glで利用可能なJSON形式のスターターマップ。
 - [バス停](vector-tiles.md#バス停)
 - [バス路線](vector-tiles.md#バス路線)
 - [シェアサイクルステーション](vector-tiles.md#シェアサイクルステーション)
+- [道路ネットワーク](vector-tiles.md#道路ネットワーク)
 - [メッシュ人口](vector-tiles.md#メッシュ人口)
 - [町丁目人口](vector-tiles.md#町丁目人口)
 - [都市計画用途地域](vector-tiles.md#都市計画用途地域)
 - [都市計画区域区分](vector-tiles.md#都市計画区域区分)
 - [3D都市モデル（PLATEAU 2023 LOD0）](vector-tiles.md#3d都市モデルplateau-2023-lod0)
+- [市区町村境界](vector-tiles.md#市区町村境界)
 
 **ベースマップ**
 - [地理院淡色地図](basemaps.md#地理院淡色地図)

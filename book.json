@@ -1,10 +1,16 @@
 {
   "title": "Kepler.gl 可視化素材集",
-  "description": "Kepler.glで利用可能なベクタータイル・ベースマップのリソースカタログ",
+  "description": "Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧。地図可視化の参考資料をまとめています。",
   "author": "株式会社AMANE",
   "language": "ja",
   "root": "./docs",
   "plugins": ["amane-custom"],
+  "pluginsConfig": {
+    "amane-custom": {
+      "siteName": "Kepler.gl 可視化素材集",
+      "siteDescription": "Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧"
+    }
+  },
   "styles": {
     "website": "styles/website.css"
   }

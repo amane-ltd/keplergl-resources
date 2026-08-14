@@ -1,7 +1,7 @@
 module.exports = {
   website: {
     assets: './assets',
-    js: ['page-toc.js'],
+    js: ['page-toc.js', 'seo.js'],
     css: ['plugin.css']
   },
   hooks: {

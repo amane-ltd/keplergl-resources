@@ -6,7 +6,7 @@
   "scripts": {
     "build": "honkit build",
     "serve": "honkit serve",
-    "deploy": "honkit build && gh-pages -d _book"
+    "deploy": "honkit build && gh-pages -d _book -r https://github.com/amane-ltd/keplergl-resources.git"
   },
   "keywords": [],
   "author": "",

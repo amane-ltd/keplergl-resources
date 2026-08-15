@@ -1,0 +1,509 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <title>3Dモデルの追加 · Kepler.gl 可視化素材集</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        <meta name="author" content="株式会社AMANE">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-amane-custom/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="howtouse.html" />
+    
+    
+    <link rel="prev" href="howtotranspose.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="samplemaps.html">
+            
+                <a href="samplemaps.html">
+            
+                    
+                    スターターマップ詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="basemaps.html">
+            
+                <a href="basemaps.html">
+            
+                    
+                    ベースマップ詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="vector-tiles.html">
+            
+                <a href="vector-tiles.html">
+            
+                    
+                    ベクタータイル詳細
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="howtotranspose.html">
+            
+                <a href="howtotranspose.html">
+            
+                    
+                    ベクタータイルの前処理方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="3dmodel.html">
+            
+                <a href="3dmodel.html">
+            
+                    
+                    3Dモデルの追加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="howtouse.html">
+            
+                <a href="howtouse.html">
+            
+                    
+                    地域公共交通アップデートの実践
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3Dモデルの追加</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="3dモデルの追加">3Dモデルの追加</h1>
+<p>Kepler.glで3Dモデルを表示するための設定と活用方法。</p>
+<p><img src="images/3Dモデル_イメージ.png" alt=""></img></p>
+<h2 id="keplerglの3dモデルの表示機能">Kepler.glの3Dモデルの表示機能</h2>
+<blockquote>
+<p>ver. 3.3.0-alpha.6 時点の情報です。</p>
+</blockquote>
+<p>Kepler.gl は 2D の地図表示に加え、いくつかの方法で立体（3D）表現をサポートしています。基盤となる描画エンジンは deck.gl / WebGL であり、地図を傾けた3Dビューの上に各種の立体レイヤーを重ねられます。3Dに関わる主な機能は次のとおりです。</p>
+<h3 id="1-3dビュー（地図の傾き・回転）">1. 3Dビュー（地図の傾き・回転）</h3>
+<p>地図を傾ける（pitch）・回転する（bearing）ことで、俯瞰の3Dパースで表示できます。後述の地形・建物・立体レイヤー・3Dモデルは、この3Dビューと組み合わせることで立体感が得られます。</p>
+<h3 id="2-3d建物（3d-buildings）">2. 3D建物（3D Buildings）</h3>
+<p>ベースマップのスタイルに含まれる建物フットプリントを高さ付きで立体表示する機能です。レイヤーを追加せずマップスタイル側の設定として描画されます（3.0.0 系でレンダリング方式が整理され、3.1.0 からはポリゴンレイヤーのドロップダウンでも「3D buildings」を選択可能になりました）。</p>
+<h3 id="3-カラム（column）による高さ表現">3. カラム（Column）による高さ表現</h3>
+<p>集計系レイヤー（Hexbin / Grid / H3 など）や Point のカラム表示では、集計値や属性に応じて<strong>高さ（Height / Elevation）</strong>を持たせ、3D の柱として押し出し（extrude）表示できます。「Enable Height」等のトグルと高さスケールで調整します。</p>
+<h3 id="4-tripレイヤーの3dモデル（gltf）">4. Tripレイヤーの3Dモデル（glTF）</h3>
+<p>移動オブジェクト（アニメーションする軌跡）に対して、<strong>glTF 形式の3Dモデル</strong>を割り当てて表示できる機能です。deck.gl の ScenegraphLayer を基盤としており（kepler.gl 3.0.0 系で ScenegraphLayer を導入）、車両・航空機・人などのモデルを軌跡に沿って動かせます。内蔵のモデルライブラリから選ぶか、独自の glTF/GLB ファイルを URL で指定できます。設定方法は次章を参照してください。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>対応形式</td>
+<td>.gltf（JSON/ASCII）／ .glb（バイナリ）</td>
+</tr>
+<tr>
+<td>モデル指定</td>
+<td>内蔵ライブラリ、または Custom で自前モデルの URL を指定</td>
+</tr>
+<tr>
+<td>要件</td>
+<td>ホスト側で <strong>CORS を有効化</strong>しておく必要がある</td>
+</tr>
+<tr>
+<td>性能上の注意</td>
+<td>ポリゴン数の多い高精細モデルは描画が大幅に遅くなることがある</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-3dタイル（3d-tile-レイヤー）">5. 3Dタイル（3D Tile レイヤー）</h3>
+<p>フォトグラメトリのメッシュ、建物、地形などの3Dコンテンツを配信タイルとして読み込む専用レイヤーです。<strong>OGC 3D Tiles / Google Photorealistic 3D Tiles / Cesium Ion / ArcGIS I3S</strong> をサポートします。都市全体のリアルな3D表現などに利用できます。</p>
+<h3 id="6-グローブ表示（globe-view）">6. グローブ表示（Globe View）</h3>
+<p>比較的新しい 3.3.0 系で追加された、地球を球体として描画するグローブビューモードです（大気のハロー表現やレイヤーブレンディング等を含む）。</p>
+<h3 id="3d関連機能の追加履歴（リリースノートより）">3D関連機能の追加履歴（リリースノートより）</h3>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>主な導入・更新バージョン</th>
+<th>時期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3D建物のレンダリング整理</td>
+<td>3.0.0-alpha.0</td>
+<td>2022-11</td>
+</tr>
+<tr>
+<td>ScenegraphLayer（3Dモデルの基盤）</td>
+<td>3.0.0-alpha.1〜</td>
+<td>2023-10〜</td>
+</tr>
+<tr>
+<td>ポリゴンドロップダウンに 3D buildings 追加</td>
+<td>3.1.0-alpha.1</td>
+<td>2024-12</td>
+</tr>
+<tr>
+<td>3Dタイル / グローブ等の拡充</td>
+<td>3.3.0 系</td>
+<td>2026</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注: UI 上の項目名・操作は、kepler.gl をベースとする Foursquare Studio のドキュメントに準拠しています。オープンソース版のバージョンによっては、内蔵モデルライブラリ等の一部 UI が異なる場合があります。</p>
+</blockquote>
+<h2 id="tripsレイヤーの3dモデルの設定方法">Tripsレイヤーの3Dモデルの設定方法</h2>
+<h3 id="3dモデル素材">3Dモデル素材</h3>
+<p>Tripレイヤーの「3D Model → Custom」に、以下の glTF/GLB モデルの URL を指定して利用できます。いずれも本リポジトリの <span class="copy-code-wrapper"><code>3dmodels/</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span> 配下に置いた自作モデルで、GitHub raw（<span class="copy-code-wrapper"><code>raw.githubusercontent.com</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）経由で配信されます。GitHub raw は CORS が有効（<span class="copy-code-wrapper"><code>Access-Control-Allow-Origin: *</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）なため、kepler.gl から直接読み込めます。</p>
+<blockquote>
+<p>注: 下記 URL は <span class="copy-code-wrapper"><code>main</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span> ブランチの内容を参照します。モデルを追加・更新した場合は、コミットして push しないと反映されません。</p>
+</blockquote>
+<h4 id="バス（bus）">バス（Bus）</h4>
+<p><img src="images/3Dモデル_バス.png" alt=""></img></p>
+<ul>
+<li><strong>URL</strong>: <span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/3dmodels/bus.glb</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></li>
+<li><strong>作者</strong>: 株式会社AMANE（自作モデル）</li>
+<li><strong>ライセンス</strong>: Creative Commons Attribution 4.0（CC BY 4.0）— 公開・配布時は <strong>「株式会社AMANE」</strong> のクレジット表記が必要</li>
+<li><strong>形式</strong>: glTF 2.0 バイナリ（<span class="copy-code-wrapper"><code>.glb</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）／ 低ポリゴン（trimesh 生成。body・windows・stripe・windshield などの複数メッシュ）</li>
+<li><strong>ファイルサイズ</strong>: 約 23 KB（軽量、多数配置にも向く）</li>
+<li><strong>CORS</strong>: 有効（GitHub raw 配信：<span class="copy-code-wrapper"><code>Access-Control-Allow-Origin: *</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）</li>
+<li><strong>用途例</strong>: バス・車両の移動軌跡（Tripレイヤー）に沿って走らせる3Dモデルとして</li>
+</ul>
+<blockquote>
+<p>使い方: Tripレイヤーの設定パネルで <strong>3D Model</strong> を「Custom」にし、上記 URL を貼り付けます。モデルの大きさは <strong>Size Scale</strong>、進行方向の傾きは <strong>Roll / Pitch / Yaw Based On</strong> で調整します（詳細は前項参照）。</p>
+</blockquote>
+<h4 id="ハイエースhiace">ハイエース(HiACE)</h4>
+<p><img src="images/3Dモデル_ハイエース.png" alt=""></img></p>
+<p>ハイエース風の箱型バン。既存のバスとテイストを揃えた低ポリの自作モデルです。</p>
+<ul>
+<li><strong>URL</strong>: <span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/3dmodels/hiace.glb</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></li>
+<li><strong>作者</strong>: 株式会社AMANE（自作モデル）</li>
+<li><strong>ライセンス</strong>: Creative Commons Attribution 4.0（CC BY 4.0）— 公開・配布時は <strong>「株式会社AMANE」</strong> のクレジット表記が必要</li>
+<li><strong>形式</strong>: glTF 2.0 バイナリ（<span class="copy-code-wrapper"><code>.glb</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）／ 低ポリゴン（trimesh 生成。body・windows・windshield・rear_glass などの複数メッシュ）</li>
+<li><strong>ファイルサイズ</strong>: 約 22 KB（軽量、多数配置にも向く）</li>
+<li><strong>CORS</strong>: 有効（GitHub raw 配信：<span class="copy-code-wrapper"><code>Access-Control-Allow-Origin: *</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）</li>
+<li><strong>用途例</strong>: 配送・営業車などの移動軌跡（Tripレイヤー）に沿って走らせる3Dモデルとして</li>
+</ul>
+<h4 id="人型ピンpin-person">人型ピン(Pin Person)</h4>
+<p><img src="images/3Dモデル_人型ピン.png" alt=""></img></p>
+<p>球（頭）＋円錐（胴）を組み合わせたチェスのポーン型の人型ピン。極小サイズで、多数配置しても軽快に動きます。</p>
+<ul>
+<li><strong>URL</strong>: <span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/3dmodels/pin_person.glb</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></li>
+<li><strong>作者</strong>: 株式会社AMANE（自作モデル）</li>
+<li><strong>ライセンス</strong>: Creative Commons Attribution 4.0（CC BY 4.0）— 公開・配布時は <strong>「株式会社AMANE」</strong> のクレジット表記が必要</li>
+<li><strong>形式</strong>: glTF 2.0 バイナリ（<span class="copy-code-wrapper"><code>.glb</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）／ 低ポリゴン（trimesh 生成。単一メッシュ）</li>
+<li><strong>ファイルサイズ</strong>: 約 7 KB（超軽量）</li>
+<li><strong>CORS</strong>: 有効（GitHub raw 配信：<span class="copy-code-wrapper"><code>Access-Control-Allow-Origin: *</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span>）</li>
+<li><strong>用途例</strong>: 人・歩行者・訪問先などの移動軌跡（Tripレイヤー）を表す人型ピンとして</li>
+</ul>
+<h3 id="手順">手順</h3>
+<ol>
+<li><p><strong>軌跡データを用意する</strong>
+移動を表すデータ（Tripレイヤー用）を用意します。GeoJSON の LineString で各座標に4要素目としてタイムスタンプを持たせた形式、または「経度・緯度・時刻」を持つ point データを使います。</p>
+</li>
+<li><p><strong>データを読み込む</strong>
+kepler.gl の「Add Data」からデータを追加します。</p>
+</li>
+<li><p><strong>Tripレイヤーを作成する</strong>
+レイヤーを追加し、レイヤータイプを <strong>Trip</strong> に設定します。ジオメトリ（軌跡）と時刻カラムが正しく割り当てられていることを確認します。時刻が認識されると、アニメーション（時間）コントロールが表示されます。</p>
+</li>
+<li><p><strong>地図を3Dビューにする</strong>
+3Dモデルは平面では立体が分かりにくいため、地図を傾け（pitch）ます。画面右上の 3D/2D 切り替え、またはマップ操作（右ドラッグ等）で俯瞰のパースにします。</p>
+</li>
+<li><p><strong>3Dモデルを割り当てる</strong>
+Tripレイヤーの設定で <strong>3D Model</strong> を <strong>Custom</strong> にし、素材のモデルURL（前項「3Dモデル素材」参照）を貼り付けます。読み込まれると軌跡に沿ってモデルが移動します。</p>
+</li>
+<li><p><strong>詳細設定を行う</strong>
+モデルを正しく見やすく表示するため、以下を必ず設定します。</p>
+<ul>
+<li><strong>Apply Color を有効にする</strong> — 有効化してモデルの色を調整します（軌跡の色を適用する／任意の色を指定する）。</li>
+<li><strong>Size Scale を 5 倍前後にする</strong> — モデルは実寸大のため、地図の縮尺では小さく見えます。Size Scale を 5 倍前後に上げて視認できる大きさにします（対象の縮尺・モデルに応じて微調整）。</li>
+<li><strong>Adjust Roll を 90 にする</strong> — モデルの姿勢が横倒しになるため、Adjust Roll を 90 に設定して直立・進行方向に合わせます。</li>
+</ul>
+</li>
+</ol>
+<p align="center">
+  <img src="images/3Dモデル_設定例.png" width="50%"></img>
+</p>
+
+<ol>
+<li><strong>アニメーションを再生する</strong>
+時間（アニメーション）コントロールの再生ボタンでモデルを動かし、必要に応じて再生速度・Trail Length を調整します。</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="howtotranspose.html" class="navigation navigation-prev " aria-label="Previous page: ベクタータイルの前処理方法">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="howtouse.html" class="navigation navigation-next " aria-label="Next page: 地域公共交通アップデートの実践">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3Dモデルの追加","level":"1.6","depth":1,"next":{"title":"地域公共交通アップデートの実践","level":"1.7","depth":1,"path":"howtouse.md","ref":"howtouse.md","articles":[]},"previous":{"title":"ベクタータイルの前処理方法","level":"1.5","depth":1,"path":"howtotranspose.md","ref":"howtotranspose.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{"siteName":"Kepler.gl 可視化素材集","siteDescription":"Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧。地図可視化の参考資料をまとめています。"},"file":{"path":"3dmodel.md","mtime":"2026-08-15T07:16:34.570Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-08-15T07:17:09.172Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-amane-custom/page-toc.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-amane-custom/seo.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -2,6 +2,7 @@
 
 Kepler.glで3Dモデルを表示するための設定と活用方法。
 
+![](images/3Dモデル_イメージ.png)
 
 ## Kepler.glの3Dモデルの表示機能
 
@@ -61,6 +62,8 @@ Tripレイヤーの「3D Model → Custom」に、以下の glTF/GLB モデル�
 
 #### バス（Bus）
 
+![](images/3Dモデル_バス.png)
+
 - **URL**: `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/3dmodels/bus.glb`
 - **作者**: 株式会社AMANE（自作モデル）
 - **ライセンス**: Creative Commons Attribution 4.0（CC BY 4.0）— 公開・配布時は **「株式会社AMANE」** のクレジット表記が必要
@@ -72,6 +75,8 @@ Tripレイヤーの「3D Model → Custom」に、以下の glTF/GLB モデル�
 > 使い方: Tripレイヤーの設定パネルで **3D Model** を「Custom」にし、上記 URL を貼り付けます。モデルの大きさは **Size Scale**、進行方向の傾きは **Roll / Pitch / Yaw Based On** で調整します（詳細は前項参照）。
 
 #### ハイエース(HiACE)
+
+![](images/3Dモデル_ハイエース.png)
 
 ハイエース風の箱型バン。既存のバスとテイストを揃えた低ポリの自作モデルです。
 
@@ -85,6 +90,8 @@ Tripレイヤーの「3D Model → Custom」に、以下の glTF/GLB モデル�
 
 #### 人型ピン(Pin Person)
 
+![](images/3Dモデル_人型ピン.png)
+
 球（頭）＋円錐（胴）を組み合わせたチェスのポーン型の人型ピン。極小サイズで、多数配置しても軽快に動きます。
 
 - **URL**: `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/3dmodels/pin_person.glb`
@@ -94,3 +101,35 @@ Tripレイヤーの「3D Model → Custom」に、以下の glTF/GLB モデル�
 - **ファイルサイズ**: 約 7 KB（超軽量）
 - **CORS**: 有効（GitHub raw 配信：`Access-Control-Allow-Origin: *`）
 - **用途例**: 人・歩行者・訪問先などの移動軌跡（Tripレイヤー）を表す人型ピンとして
+
+### 手順
+
+1. **軌跡データを用意する**
+   移動を表すデータ（Tripレイヤー用）を用意します。GeoJSON の LineString で各座標に4要素目としてタイムスタンプを持たせた形式、または「経度・緯度・時刻」を持つ point データを使います。
+
+2. **データを読み込む**
+   kepler.gl の「Add Data」からデータを追加します。
+
+3. **Tripレイヤーを作成する**
+   レイヤーを追加し、レイヤータイプを **Trip** に設定します。ジオメトリ（軌跡）と時刻カラムが正しく割り当てられていることを確認します。時刻が認識されると、アニメーション（時間）コントロールが表示されます。
+
+4. **地図を3Dビューにする**
+   3Dモデルは平面では立体が分かりにくいため、地図を傾け（pitch）ます。画面右上の 3D/2D 切り替え、またはマップ操作（右ドラッグ等）で俯瞰のパースにします。
+
+5. **3Dモデルを割り当てる**
+   Tripレイヤーの設定で **3D Model** を **Custom** にし、素材のモデルURL（前項「3Dモデル素材」参照）を貼り付けます。読み込まれると軌跡に沿ってモデルが移動します。
+
+6. **詳細設定を行う**
+   モデルを正しく見やすく表示するため、以下を必ず設定します。
+
+   - **Apply Color を有効にする** — 有効化してモデルの色を調整します（軌跡の色を適用する／任意の色を指定する）。
+   - **Size Scale を 5 倍前後にする** — モデルは実寸大のため、地図の縮尺では小さく見えます。Size Scale を 5 倍前後に上げて視認できる大きさにします（対象の縮尺・モデルに応じて微調整）。
+   - **Adjust Roll を 90 にする** — モデルの姿勢が横倒しになるため、Adjust Roll を 90 に設定して直立・進行方向に合わせます。
+
+<p align="center">
+  <img src="images/3Dモデル_設定例.png" width="50%">
+</p>
+
+7. **アニメーションを再生する**
+   時間（アニメーション）コントロールの再生ボタンでモデルを動かし、必要に応じて再生速度・Trail Length を調整します。
+

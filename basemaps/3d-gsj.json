@@ -1,0 +1,69 @@
+{
+  "version": 8,
+  "name": "GSI Pale + Terrain (GSJ Terrain-RGB)",
+  "center": [135.3416, 34.7376],
+  "zoom": 11,
+  "pitch": 60,
+  "bearing": 0,
+  "sources": {
+    "gsi-pale": {
+      "type": "raster",
+      "tiles": [
+        "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"
+      ],
+      "tileSize": 256,
+      "minzoom": 2,
+      "maxzoom": 18,
+      "attribution": "<a href=\"https://maps.gsi.go.jp/development/ichiran.html\" target=\"_blank\">国土地理院</a>"
+    },
+    "dem": {
+      "type": "raster-dem",
+      "tiles": [
+        "https://gsj-seamless.jp/seamless/elev/php/terrainRGB.php?url=https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png"
+      ],
+      "tileSize": 256,
+      "minzoom": 1,
+      "maxzoom": 17,
+      "encoding": "mapbox",
+      "attribution": "<a href=\"https://gsj-seamless.jp/seamless/elev/\" target=\"_blank\">産業技術総合研究所 シームレス標高タイル</a>"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f2efe9"
+      }
+    },
+    {
+      "id": "gsi-pale-raster",
+      "type": "raster",
+      "source": "gsi-pale",
+      "paint": {
+        "raster-opacity": 1,
+        "raster-fade-duration": 0
+      }
+    },
+    {
+      "id": "hillshade",
+      "type": "hillshade",
+      "source": "dem",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "hillshade-exaggeration": 0.4,
+        "hillshade-shadow-color": "#4a4034",
+        "hillshade-highlight-color": "#ffffff",
+        "hillshade-accent-color": "#5a5a5a",
+        "hillshade-illumination-direction": 315,
+        "hillshade-illumination-anchor": "viewport"
+      }
+    }
+  ],
+  "terrain": {
+    "source": "dem",
+    "exaggeration": 1.2
+  }
+}

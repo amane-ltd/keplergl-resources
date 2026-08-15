@@ -5,4 +5,5 @@
 * [ベースマップ詳細](basemaps.md)
 * [ベクタータイル詳細](vector-tiles.md)
 * [ベクタータイルの前処理方法](howtotranspose.md)
-* [データ活用の手引き](howtouse.md)
+* [3Dモデルの追加](3dmodel.md)
+* [地域公共交通アップデートの実践](howtouse.md)

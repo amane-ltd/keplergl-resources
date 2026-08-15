@@ -18,6 +18,15 @@
             "tiles":["https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png"],
             "tileSize":512,
             "attribution":"<a href='https://carto.com/attributions' target='_blank'>© CARTO</a>"
+        },
+        "dem":{
+            "type":"raster-dem",
+            "tiles":["https://gsj-seamless.jp/seamless/elev/php/terrainRGB.php?url=https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png"],
+            "tileSize":256,
+            "minzoom":1,
+            "maxzoom":17,
+            "encoding":"mapbox",
+            "attribution":"<ahref=\"https://gsj-seamless.jp/seamless/elev/\"target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
         }
     },
     "layers":[
@@ -125,6 +134,7 @@
         {"id":"boundary-gsibv-vectortile-layer-2471","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"boundary","metadata":{"layer-id":"layer-2242","title":"所属界（所属を明示する境界線）","path":"境界-行政界-所属界（所属を明示する境界線）","added":1},"minzoom":11,"maxzoom":17,"filter":["all",["in","ftCode",1221]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,1)","line-width":1.5,"line-dasharray":[4,1,1,5]}},
         {"id":"boundary-gsibv-vectortile-layer-2472","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"boundary","metadata":{"layer-id":"layer-2238","title":"地方界","path":"境界-行政界-地方界","added":1},"minzoom":6,"maxzoom":8,"filter":["all",["in","ftCode",51212]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(100,100,100)","line-width":1,"line-dasharray":[10,2,1,2]}},
         {"id":"boundary-gsibv-vectortile-layer-2473","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"boundary","metadata":{"layer-id":"layer-2239","title":"国の所属界","path":"境界-行政界-国の所属界","added":1},"minzoom":4,"maxzoom":8,"filter":["all",["in","ftCode",51221]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(34,24,21)","line-width":1}},
+        {"id":"dem-hillshade","type":"hillshade","source":"dem","layout":{"visibility":"visible"},"paint":{"hillshade-exaggeration":0.4,"hillshade-shadow-color":"#4a4034","hillshade-highlight-color":"#ffffff","hillshade-accent-color":"#5a5a5a","hillshade-illumination-direction":315,"hillshade-illumination-anchor":"viewport"}},
         {"id":"road-gsibv-vectortile-layer-2474","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"road","metadata":{"layer-id":"layer-1829","title":"通常部（有料）","path":"道路-市区町村道・その他-通常部（有料）","line-role":"outline","added":1},"minzoom":10,"maxzoom":13,"filter":["all",["in","ftCode",2701,2702,2703],["!=","rdCtg",0],["!=","rdCtg",1],["!=","rdCtg",3],["!=","motorway",1],["==","tollSect",1]],"layout":{"line-cap":"square","line-join":"round","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,1)","line-width":3}},
         {"id":"road-gsibv-vectortile-layer-2475","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"road","metadata":{"layer-id":"layer-1800","title":"通常部","path":"道路-都道府県道-通常部","line-role":"outline","added":1},"minzoom":10,"maxzoom":11,"filter":["all",["in","ftCode",2701],["==","rdCtg",1],["!=","motorway",1]],"layout":{"line-cap":"square","line-join":"round","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,1)","line-width":3}},
         {"id":"road-gsibv-vectortile-layer-2476","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"road","metadata":{"layer-id":"layer-1808","title":"通常部","path":"道路-都道府県道-3m以上5.5m未満-通常部","line-role":"outline","added":1},"minzoom":11,"maxzoom":14,"filter":["all",["in","ftCode",2701,2702],["==","rdCtg",1],["!=","motorway",1],["==","rnkWidth",1]],"layout":{"line-cap":"square","line-join":"round","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,1)","line-width":3}},
@@ -503,6 +513,10 @@
         {"id":"water-gsibv-vectortile-layer-2849","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"river","metadata":{"layer-id":"layer-2270","title":"人工水路（空間）","path":"河川-人工水路（空間）","added":1},"minzoom":14,"maxzoom":17,"filter":["all",["in","ftCode",5321]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(100,100,100)","line-width":{"stops":[[9,2],[17,3]]}}},
         {"id":"water-gsibv-vectortile-layer-2850","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"river","metadata":{"layer-id":"layer-2271","title":"人工水路（空間）","path":"河川-人工水路（空間）","added":1},"minzoom":17,"maxzoom":18,"filter":["all",["in","ftCode",5321]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,0.5)","line-width":1}}
     ],
+    "terrain":{
+        "source":"dem",
+        "exaggeration":1.2
+    },
     "sprite":"https://gsi-cyberjapan.github.io/gsivectortile-mapbox-gl-js/sprite/std",
     "metadata":{
         "gsimaps-vector-url":"https://maps.gsi.go.jp/vector/#7/36.104611/140.084556/&ls=&disp=&d=l",

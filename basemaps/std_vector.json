@@ -19,6 +19,15 @@
             "tiles":["https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png"],
             "tileSize":512,
             "attribution":"<a href='https://carto.com/attributions' target='_blank'>© CARTO</a>"
+        },
+        "dem":{
+            "type":"raster-dem",
+            "tiles":["https://gsj-seamless.jp/seamless/elev/php/terrainRGB.php?url=https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png"],
+            "tileSize":256,
+            "minzoom":1,
+            "maxzoom":17,
+            "encoding":"mapbox",
+            "attribution":"<ahref=\"https://gsj-seamless.jp/seamless/elev/\"target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
         }
     },
     "layers":[
@@ -156,6 +165,7 @@
         {"id":"boundary-gsibv-vectortile-layer-895","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"boundary","metadata":{"layer-id":"layer-811","title":"所属界（所属を明示する境界線）","path":"境界-行政界-所属界（所属を明示する境界線）","added":1},"minzoom":11,"maxzoom":17,"filter":["all",["in","ftCode",1221]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgba(68, 0, 128,1)","line-width":1.5,"line-dasharray":[4,1,1,5]}},
         {"id":"boundary-gsibv-vectortile-layer-896","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"boundary","metadata":{"layer-id":"layer-807","title":"地方界","path":"境界-行政界-地方界","added":1},"minzoom":6,"maxzoom":8,"filter":["all",["in","ftCode",51212]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(0,0,0)","line-width":1,"line-dasharray":[10,2,1,2]}},
         {"id":"boundary-gsibv-vectortile-layer-897","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"boundary","metadata":{"layer-id":"layer-808","title":"国の所属界","path":"境界-行政界-国の所属界","added":1},"minzoom":4,"maxzoom":8,"filter":["all",["in","ftCode",51221]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(34,24,21)","line-width":1}},
+        {"id":"dem-hillshade","type":"hillshade","source":"dem","layout":{"visibility":"visible"},"paint":{"hillshade-exaggeration":0.4,"hillshade-shadow-color":"#4a4034","hillshade-highlight-color":"#ffffff","hillshade-accent-color":"#5a5a5a","hillshade-illumination-direction":315,"hillshade-illumination-anchor":"viewport"}},
         {"id":"road-gsibv-vectortile-layer-898","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"road","metadata":{"layer-id":"layer-703","title":"通常部（有料）","path":"道路-市区町村道・その他-通常部（有料）","line-role":"outline","added":1},"minzoom":10,"maxzoom":13,"filter":["all",["in","ftCode",2701,2702,2703],["!=","rdCtg",0],["!=","rdCtg",1],["!=","rdCtg",3],["!=","motorway",1],["==","tollSect",1]],"layout":{"line-cap":"square","line-join":"round","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,1)","line-width":3}},
         {"id":"road-gsibv-vectortile-layer-899","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"road","metadata":{"layer-id":"layer-643","title":"徒歩道","path":"道路-国道-徒歩道","line-role":"outline","added":1},"minzoom":11,"maxzoom":17,"filter":["all",["in","ftCode",2721,2722,2723],["==","rdCtg",0],["!=","motorway",1]],"layout":{"line-cap":"square","line-join":"round","visibility":"visible"},"paint":{"line-color":"rgba(235,130,120,1)","line-width":{"stops":[[11,2],[15,3],[17,8]]}}},
         {"id":"road-gsibv-vectortile-layer-900","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"road","metadata":{"layer-id":"layer-673","title":"徒歩道","path":"道路-都道府県道-徒歩道","line-role":"outline","added":1},"minzoom":11,"maxzoom":17,"filter":["all",["in","ftCode",2721,2722,2723],["==","rdCtg",1],["!=","motorway",1]],"layout":{"line-cap":"square","line-join":"round","visibility":"visible"},"paint":{"line-color":"rgba(255,255,0,1)","line-width":{"stops":[[11,2],[15,3],[17,8]]}}},
@@ -798,6 +808,10 @@
         {"id":"parks-gsibv-vectortile-layer-1537","type":"symbol","source":"gsibv-vectortile-source-1-4-16","source-layer":"symbol","metadata":{"layer-id":"layer-941","title":"電子基準点","path":"記号-電子基準点","added":1},"minzoom":14,"maxzoom":18,"filter":["all",["in","ftCode",7101],["==","gcpCodeFlag",0]],"layout":{"icon-size":{"stops":[[14,0.4],[15,0.8],[16,1],[17,1]]},"icon-anchor":"center","icon-image":"電子基準点","icon-pitch-alignment":"viewport","icon-rotation-alignment":"viewport","icon-allow-overlap":true,"text-font":["NotoSansCJKjp-Regular"],"symbol-placement":"point","text-keep-upright":true,"text-allow-overlap":false,"symbol-z-order":"auto","text-max-width":100,"visibility":"visible"}},
         {"id":"label-gsibv-vectortile-layer-1538","type":"symbol","source":"gsibv-vectortile-source-1-4-16","source-layer":"symbol","metadata":{"layer-id":"layer-942","title":"電子基準点(付)","path":"記号-電子基準点(付)","added":1},"minzoom":14,"maxzoom":18,"filter":["all",["in","ftCode",7101],["==","gcpCodeFlag",1]],"layout":{"text-anchor":"left","text-offset":[0.8,-0.1],"text-pitch-alignment":"viewport","text-rotation-alignment":"viewport","text-allow-overlap":true,"text-size":{"stops":[[14,10],[15,18],[16,30],[17,30]]},"text-field":["to-string",["case",["!",["has","alti"]],["to-string",""],["==",["get","alti"],""],["to-string",""],["in",".",["to-string",["/",["round",["*",["to-number",["get","alti"]],10]],10]]],["to-string",["/",["round",["*",["to-number",["get","alti"]],10]],10]],["concat",["to-string",["/",["round",["*",["to-number",["get","alti"]],10]],10]],".0"]]],"text-font":["NotoSansCJKjp-Regular"],"symbol-placement":"point","icon-allow-overlap":true,"text-keep-upright":true,"symbol-z-order":"auto","text-max-width":100,"visibility":"visible"},"paint":{"text-color":"rgba(0,0,0,1)","text-halo-color":"rgba(255,255,255,1)","text-halo-width":1}}
     ],
+    "terrain":{
+        "source":"dem",
+        "exaggeration":1.2
+    },
     "sprite":"https://gsi-cyberjapan.github.io/gsivectortile-mapbox-gl-js/sprite/std",
     "metadata":{
         "gsimaps-vector-url":"https://maps.gsi.go.jp/vector/#7/36.104611/140.084556/&ls=&disp=&d=l",

@@ -6,6 +6,10 @@ module.exports = {
   },
   hooks: {
     'page': function(page) {
+      if (!page.description) {
+        page.description = 'Kepler.gl で利用できるベクタータイル、ベースマップ、サンプルマップの素材一覧。地図可視化の参考資料をまとめています。';
+      }
+
       page.content = page.content.replace(
         /<code>([^<]+)<\/code>/g,
         '<span class="copy-code-wrapper"><code>$1</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent=\'Copied!\';b.classList.add(\'copied\');setTimeout(function(){b.textContent=\'Copy\';b.classList.remove(\'copied\')},1500)})">Copy</button></span>'

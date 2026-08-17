@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "honkit build",
+    "build": "honkit build && node scripts/fix-seo.js",
     "serve": "honkit serve",
-    "deploy": "honkit build && gh-pages -d _book -r https://github.com/amane-ltd/keplergl-resources.git"
+    "deploy": "npm run build && gh-pages -d _book -r https://github.com/amane-ltd/keplergl-resources.git"
   },
   "keywords": [],
   "author": "",

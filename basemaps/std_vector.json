@@ -19,7 +19,7 @@
             "minzoom": 1,
             "maxzoom": 17,
             "encoding": "mapbox",
-            "attribution": "<ahref=\"https://gsj-seamless.jp/seamless/elev/\"target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
+            "attribution": ""
         },
         "gsi-std": {
             "type": "raster",
@@ -27,10 +27,26 @@
                 "https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png"
             ],
             "tileSize": 256,
-            "attribution": "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>国土地理院</a>"
+            "attribution": ""
+        },
+        "attribution": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": []
+            },
+            "attribution": "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>国土地理院</a> ｜ <a href='https://gsj-seamless.jp/seamless/elev/' target='_blank'>産業技術総合研究所シームレス標高タイル</a>"
         }
     },
     "layers": [
+        {
+            "id": "attribution",
+            "type": "symbol",
+            "source": "attribution",
+            "layout": {
+                "visibility": "none"
+            }
+        },
         {
             "id": "background",
             "type": "raster",

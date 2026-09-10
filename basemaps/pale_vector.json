@@ -14,11 +14,11 @@
             "maxzoom":16,
             "attribution":"<a href=\"https://maps.gsi.go.jp/vector/\" target=\"_blank\">地理院地図Vector（仮称）</a>"
         },
-        "carto-light":{
+        "gsi-pale":{
             "type":"raster",
-            "tiles":["https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png"],
-            "tileSize":512,
-            "attribution":"<a href='https://carto.com/attributions' target='_blank'>© CARTO</a>"
+            "tiles":["https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"],
+            "tileSize":256,
+            "attribution":"<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>国土地理院</a>"
         },
         "dem":{
             "type":"raster-dem",
@@ -31,7 +31,7 @@
         }
     },
     "layers":[
-        {"id":"background","type":"raster","source":"carto-light"},
+        {"id":"background","type":"raster","source":"gsi-pale"},
         {"id":"building-gsibv-vectortile-layer-1539","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"structurel","metadata":{"layer-id":"layer-1128","title":"坑口","path":"構造物-坑口","added":1},"minzoom":14,"maxzoom":17,"filter":["all",["in","ftCode",4202]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgba(100,100,100,1)","line-width":1.5}},
         {"id":"water-gsibv-vectortile-layer-1540","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"river","metadata":{"layer-id":"layer-1393","title":"人工水路（地下）","path":"河川-人工水路（地下）","added":1},"minzoom":11,"maxzoom":14,"filter":["all",["in","ftCode",5322]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(190,210,255)","line-width":{"stops":[[11,1],[14,1.5]]},"line-dasharray":[2,2]}},
         {"id":"water-gsibv-vectortile-layer-1541","type":"line","source":"gsibv-vectortile-source-1-4-16","source-layer":"river","metadata":{"layer-id":"layer-1394","title":"人工水路（地下）","path":"河川-人工水路（地下）","added":1},"minzoom":14,"maxzoom":17,"filter":["all",["in","ftCode",5322]],"layout":{"line-cap":"square","visibility":"visible"},"paint":{"line-color":"rgb(20,90,255)","line-width":1.5,"line-dasharray":[5,5]}},

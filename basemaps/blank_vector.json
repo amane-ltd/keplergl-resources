@@ -17,7 +17,7 @@
             ],
             "minzoom": 4,
             "maxzoom": 16,
-            "attribution": "<a href=\"https://maps.gsi.go.jp/vector/\" target=\"_blank\">地理院地図Vector（仮称）</a>"
+            "attribution": ""
         },
         "dem": {
             "type": "raster-dem",
@@ -28,7 +28,7 @@
             "minzoom": 1,
             "maxzoom": 17,
             "encoding": "mapbox",
-            "attribution": "<a href=\"https://gsj-seamless.jp/seamless/elev/\" target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
+            "attribution": ""
         },
         "mierune-mono": {
             "type": "raster",
@@ -36,10 +36,26 @@
                 "https://tile.mierune.co.jp/mierune_mono/{z}/{x}/{y}.png"
             ],
             "tileSize": 256,
-            "attribution": "<a href='https://mierune.co.jp/' target='_blank'>MIERUNE Inc.</a> © <a href='https://openmaptiles.org/' target='_blank'>OpenMapTiles</a> © <a href='https://openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
+            "attribution": ""
+        },
+        "attribution": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": []
+            },
+            "attribution": "<a href='https://mierune.co.jp/' target='_blank'>MIERUNE Inc.</a> © <a href='https://openmaptiles.org/' target='_blank'>OpenMapTiles</a> © <a href='https://openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a> contributors ｜ <a href='https://maps.gsi.go.jp/vector/' target='_blank'>地理院地図Vector（仮称）</a> ｜ <a href='https://gsj-seamless.jp/seamless/elev/' target='_blank'>産業技術総合研究所シームレス標高タイル</a>"
         }
     },
     "layers": [
+        {
+            "id": "attribution",
+            "type": "symbol",
+            "source": "attribution",
+            "layout": {
+                "visibility": "none"
+            }
+        },
         {
             "id": "background",
             "type": "raster",

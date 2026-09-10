@@ -30,20 +30,20 @@
             "encoding": "mapbox",
             "attribution": "<ahref=\"https://gsj-seamless.jp/seamless/elev/\"target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
         },
-        "gsi-blank": {
+        "mierune-mono": {
             "type": "raster",
             "tiles": [
-                "https://cyberjapandata.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png"
+                "https://tile.mierune.co.jp/mierune_mono/{z}/{x}/{y}.png"
             ],
             "tileSize": 256,
-            "attribution": "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>国土地理院</a>"
+            "attribution": "<a href='https://mierune.co.jp/' target='_blank'>MIERUNE Inc.</a> © <a href='https://openmaptiles.org/' target='_blank'>OpenMapTiles</a> © <a href='https://openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
         }
     },
     "layers": [
         {
             "id": "background",
             "type": "raster",
-            "source": "gsi-blank"
+            "source": "mierune-mono"
         },
         {
             "id": "building-gsibv-vectortile-layer-2302",

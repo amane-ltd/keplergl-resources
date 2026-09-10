@@ -28,7 +28,7 @@
             "minzoom": 1,
             "maxzoom": 17,
             "encoding": "mapbox",
-            "attribution": "<ahref=\"https://gsj-seamless.jp/seamless/elev/\"target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
+            "attribution": "<a href=\"https://gsj-seamless.jp/seamless/elev/\" target=\"_blank\">産業技術総合研究所シームレス標高タイル</a>"
         },
         "mierune-mono": {
             "type": "raster",

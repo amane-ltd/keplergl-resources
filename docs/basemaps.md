@@ -24,10 +24,11 @@ Kepler.glで利用可能なベースマップスタイル。各リソースはJS
 
 **概要**
 
-地理院地図Vectorの標準地図のベースマップ。道路・建物・注記など豊富な地物情報を含むフルカラーの地図スタイルで、地理的コンテキストの把握に適する。
+地理院タイル（標準地図）のラスタータイルを背景に用いたベースマップ。道路・建物・注記など豊富な地物情報を含むフルカラーの地図で、標高タイルによる地形陰影（3D表現）を重ねている。地理的コンテキストの把握に適する。
 
 **元データ**
-- [地理院地図Vector](https://maps.gsi.go.jp/vector/)
+- [地理院タイル一覧](https://maps.gsi.go.jp/development/ichiran.html)
+- [産業技術総合研究所シームレス標高タイル](https://gsj-seamless.jp/seamless/elev/)（地形表現）
 
 **ライセンス**
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
@@ -43,10 +44,11 @@ Kepler.glで利用可能なベースマップスタイル。各リソースはJS
 
 **概要**
 
-地理院地図Vectorの淡色地図のベースマップ。標準地図より色味を抑えた配色で、重ね合わせるデータの視認性を高めた地図スタイル。
+地理院タイル（淡色地図）のラスタータイルを背景に用いたベースマップ。標準地図より色味を抑えた配色で、標高タイルによる地形陰影（3D表現）を重ねている。重ね合わせるデータの視認性を高めた地図。
 
 **元データ**
-- [地理院地図Vector](https://maps.gsi.go.jp/vector/)
+- [地理院タイル一覧](https://maps.gsi.go.jp/development/ichiran.html)
+- [産業技術総合研究所シームレス標高タイル](https://gsj-seamless.jp/seamless/elev/)（地形表現）
 
 **ライセンス**
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
@@ -62,13 +64,16 @@ Kepler.glで利用可能なベースマップスタイル。各リソースはJS
 
 **概要**
 
-地理院地図Vectorの白地図のベースマップ。行政界・海岸線などの最小限の要素のみで構成され、データ可視化の背景として最も主張の少ない地図スタイル。
+主張の少ないモノトーンの白系ベースマップ。背景にMIERUNE Monoのラスタータイル（OpenStreetMapベース）を用い、その上に地理院地図Vectorの地物と、標高タイルによる地形陰影（3D表現）を重ねている。データ可視化の背景として最も主張の少ない地図。
 
 **元データ**
-- [地理院地図Vector](https://maps.gsi.go.jp/vector/)
+- [MIERUNE Mono](https://mierune.github.io/tiles/)（背景タイル）
+- [地理院地図Vector](https://maps.gsi.go.jp/vector/)（地物）
+- [産業技術総合研究所シームレス標高タイル](https://gsj-seamless.jp/seamless/elev/)（地形表現）
 
 **ライセンス**
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- 背景タイル: MIERUNE Inc. © OpenMapTiles © OpenStreetMap contributors（[CC BY](https://creativecommons.org/licenses/by/4.0/) / [ODbL](https://opendatacommons.org/licenses/odbl/)）
+- 地物・地形: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 **配布元**
 [株式会社AMANE](https://amane.ltd/)

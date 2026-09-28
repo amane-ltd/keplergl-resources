@@ -2,6 +2,240 @@
 <!DOCTYPE HTML>
 <html lang="ja" >
     <head>
+<!-- access-gate -->
+<script>
+/*
+ * アクセス制限ゲート（ブラウザ側）。
+ * scripts/inject-auth.js がビルド後の各HTMLの <head> 先頭にインライン展開する。
+ * pbkdf2$sha256$310000$08yJECdDadaXs5fWA+Y0FA==$1P5JOA2cWFZefGjTBDLBGeUc04eZXquQsRsqha2NWGI= はビルド時にハッシュ文字列へ置換される。
+ * トランスパイルされないため ES5 相当の記法で書くこと。
+ */
+(function () {
+  var HASH = 'pbkdf2$sha256$310000$08yJECdDadaXs5fWA+Y0FA==$1P5JOA2cWFZefGjTBDLBGeUc04eZXquQsRsqha2NWGI=';
+  var STORAGE_KEY = 'keplergl-resources.auth';
+  var MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30日
+  var LOCKED_CLASS = 'auth-locked';
+
+  var doc = document;
+  var root = doc.documentElement;
+
+  root.className += (root.className ? ' ' : '') + LOCKED_CLASS;
+
+  var style = doc.createElement('style');
+  style.textContent = [
+    'html.' + LOCKED_CLASS + ' { overflow: hidden; }',
+    'html.' + LOCKED_CLASS + ' body > *:not(#auth-gate) { display: none !important; }',
+    '#auth-gate { position: fixed; inset: 0; z-index: 2147483647; display: flex;',
+    '  align-items: center; justify-content: center; padding: 24px;',
+    '  background: #f4f6f8; color: #333;',
+    '  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif; }',
+    '#auth-gate .auth-card { width: 100%; max-width: 380px; background: #fff; border-radius: 10px;',
+    '  box-shadow: 0 2px 16px rgba(0,0,0,0.12); padding: 32px 28px; box-sizing: border-box; }',
+    '#auth-gate h1 { margin: 0 0 6px; font-size: 18px; font-weight: 600; line-height: 1.4; }',
+    '#auth-gate .auth-sub { margin: 0 0 20px; font-size: 12px; color: #6b7280; line-height: 1.6; }',
+    '#auth-gate label { display: block; font-size: 12px; color: #4b5563; margin-bottom: 6px; }',
+    '#auth-gate input { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 14px;',
+    '  border: 1px solid #d1d5db; border-radius: 6px; background: #fff; color: #111827; }',
+    '#auth-gate input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }',
+    '#auth-gate button[type="submit"] { width: 100%; margin-top: 16px; padding: 10px 12px; font-size: 14px;',
+    '  font-weight: 600; color: #fff; background: #2563eb; border: 0; border-radius: 6px; cursor: pointer; }',
+    '#auth-gate button[type="submit"]:hover { background: #1d4ed8; }',
+    '#auth-gate button[type="submit"][disabled] { background: #9ca3af; cursor: default; }',
+    '#auth-gate .auth-error { margin: 14px 0 0; font-size: 12px; color: #b91c1c; line-height: 1.6; min-height: 1em; }',
+    '#auth-gate .auth-foot { margin: 20px 0 0; font-size: 11px; color: #9ca3af; text-align: center; }',
+    '#auth-logout { position: fixed; right: 14px; bottom: 14px; z-index: 2147483000; padding: 6px 12px;',
+    '  font-size: 11px; color: #4b5563; background: rgba(255,255,255,0.94); border: 1px solid #d1d5db;',
+    '  border-radius: 999px; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }',
+    '#auth-logout:hover { color: #111827; border-color: #9ca3af; }'
+  ].join('\n');
+  (doc.head || root).appendChild(style);
+
+  function ready(fn) {
+    if (doc.readyState === 'loading') {
+      doc.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  function storage() {
+    try {
+      return window.localStorage;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function readSession() {
+    var store = storage();
+    if (!store) return null;
+    try {
+      var raw = store.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      // パスワードを変更（＝ハッシュを差し替え）したら既存セッションは無効になる
+      if (!data || data.hash !== HASH) return null;
+      if (typeof data.expiresAt !== 'number' || data.expiresAt <= Date.now()) return null;
+      return data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeSession() {
+    var store = storage();
+    if (!store) return;
+    try {
+      store.setItem(STORAGE_KEY, JSON.stringify({
+        hash: HASH,
+        expiresAt: Date.now() + MAX_AGE_MS
+      }));
+    } catch (e) {
+      /* プライベートモードなどでは保存しない（セッション限りになる） */
+    }
+  }
+
+  function clearSession() {
+    var store = storage();
+    if (!store) return;
+    try {
+      store.removeItem(STORAGE_KEY);
+    } catch (e) {
+      /* noop */
+    }
+  }
+
+  function base64ToBytes(b64) {
+    var binary = window.atob(b64);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
+  }
+
+  function bytesToBase64(bytes) {
+    var binary = '';
+    for (var i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
+  // ここが将来の差し替え点（HubSpot 連携などに置き換える場合はこの関数だけを変える）
+  function verifyPassword(password) {
+    var parts = HASH.split('$');
+    var iterations = parseInt(parts[2], 10);
+    var salt = base64ToBytes(parts[3]);
+    var expected = parts[4];
+    var subtle = window.crypto && window.crypto.subtle;
+    if (!subtle) {
+      return Promise.reject(new Error('crypto.subtle unavailable'));
+    }
+    var encoded = new TextEncoder().encode(password.normalize ? password.normalize('NFKC') : password);
+    return subtle
+      .importKey('raw', encoded, 'PBKDF2', false, ['deriveBits'])
+      .then(function (key) {
+        return subtle.deriveBits(
+          { name: 'PBKDF2', salt: salt, iterations: iterations, hash: 'SHA-256' },
+          key,
+          256
+        );
+      })
+      .then(function (bits) {
+        return bytesToBase64(new Uint8Array(bits)) === expected;
+      });
+  }
+
+  function unlock() {
+    root.className = root.className
+      .split(/\s+/)
+      .filter(function (name) {
+        return name && name !== LOCKED_CLASS;
+      })
+      .join(' ');
+    var gate = doc.getElementById('auth-gate');
+    if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    ready(addLogoutButton);
+  }
+
+  function addLogoutButton() {
+    if (doc.getElementById('auth-logout')) return;
+    var button = doc.createElement('button');
+    button.id = 'auth-logout';
+    button.type = 'button';
+    button.textContent = 'ログアウト';
+    button.setAttribute('aria-label', 'ログアウト / Sign out');
+    button.onclick = function () {
+      clearSession();
+      window.location.reload();
+    };
+    doc.body.appendChild(button);
+  }
+
+  function renderGate() {
+    var wrap = doc.createElement('div');
+    wrap.id = 'auth-gate';
+    wrap.innerHTML =
+      '<div class="auth-card">' +
+      '<h1>Kepler.gl 可視化素材集</h1>' +
+      '<p class="auth-sub">このサイトの閲覧にはパスワードが必要です。<br>' +
+      '<span lang="en">This site is password protected.</span></p>' +
+      '<form novalidate>' +
+      '<label for="auth-password">パスワード / Password</label>' +
+      '<input id="auth-password" type="password" autocomplete="current-password" autofocus>' +
+      '<button type="submit">閲覧する / Enter</button>' +
+      '<p class="auth-error" role="alert"></p>' +
+      '</form>' +
+      '<p class="auth-foot">株式会社AMANE</p>' +
+      '</div>';
+    doc.body.appendChild(wrap);
+
+    var form = wrap.querySelector('form');
+    var input = wrap.querySelector('#auth-password');
+    var submit = wrap.querySelector('button[type="submit"]');
+    var error = wrap.querySelector('.auth-error');
+
+    form.onsubmit = function (event) {
+      event.preventDefault();
+      var value = input.value;
+      if (!value) {
+        error.textContent = 'パスワードを入力してください。 / Enter a password.';
+        return;
+      }
+      submit.disabled = true;
+      error.textContent = '';
+      verifyPassword(value).then(
+        function (ok) {
+          if (ok) {
+            writeSession();
+            unlock();
+            return;
+          }
+          submit.disabled = false;
+          input.value = '';
+          input.focus();
+          error.textContent = 'パスワードが違います。 / Incorrect password.';
+        },
+        function () {
+          submit.disabled = false;
+          error.textContent =
+            'この環境では認証できません（HTTPS でアクセスしてください）。 / Verification unavailable over an insecure connection.';
+        }
+      );
+    };
+
+    input.focus();
+  }
+
+  if (readSession()) {
+    unlock();
+  } else {
+    ready(renderGate);
+  }
+})();
+
+</script>
         <meta charset="UTF-8">
         <title>Kepler.gl 可視化素材集</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -238,10 +472,11 @@
 <p><strong>URL</strong></p>
 <p><span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/std_vector.json</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
-<p>地理院地図Vectorの標準地図のベースマップ。道路・建物・注記など豊富な地物情報を含むフルカラーの地図スタイルで、地理的コンテキストの把握に適する。</p>
+<p>地理院タイル（標準地図）のラスタータイルを背景に用いたベースマップ。道路・建物・注記など豊富な地物情報を含むフルカラーの地図で、標高タイルによる地形陰影（3D表現）を重ねている。地理的コンテキストの把握に適する。</p>
 <p><strong>元データ</strong></p>
 <ul>
-<li><a href="https://maps.gsi.go.jp/vector/" target="_blank">地理院地図Vector</a></li>
+<li><a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル一覧</a></li>
+<li><a href="https://gsj-seamless.jp/seamless/elev/" target="_blank">産業技術総合研究所シームレス標高タイル</a>（地形表現）</li>
 </ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
@@ -251,10 +486,11 @@
 <p><strong>URL</strong></p>
 <p><span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/pale_vector.json</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
-<p>地理院地図Vectorの淡色地図のベースマップ。標準地図より色味を抑えた配色で、重ね合わせるデータの視認性を高めた地図スタイル。</p>
+<p>地理院タイル（淡色地図）のラスタータイルを背景に用いたベースマップ。標準地図より色味を抑えた配色で、標高タイルによる地形陰影（3D表現）を重ねている。重ね合わせるデータの視認性を高めた地図。</p>
 <p><strong>元データ</strong></p>
 <ul>
-<li><a href="https://maps.gsi.go.jp/vector/" target="_blank">地理院地図Vector</a></li>
+<li><a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル一覧</a></li>
+<li><a href="https://gsj-seamless.jp/seamless/elev/" target="_blank">産業技術総合研究所シームレス標高タイル</a>（地形表現）</li>
 </ul>
 <p><strong>ライセンス</strong>
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
@@ -264,13 +500,18 @@
 <p><strong>URL</strong></p>
 <p><span class="copy-code-wrapper"><code>https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/blank_vector.json</code><button class="copy-code-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(function(){var b=event.target;b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})">Copy</button></span></p>
 <p><strong>概要</strong></p>
-<p>地理院地図Vectorの白地図のベースマップ。行政界・海岸線などの最小限の要素のみで構成され、データ可視化の背景として最も主張の少ない地図スタイル。</p>
+<p>主張の少ないモノトーンの白系ベースマップ。背景にMIERUNE Monoのラスタータイル（OpenStreetMapベース）を用い、その上に地理院地図Vectorの地物と、標高タイルによる地形陰影（3D表現）を重ねている。データ可視化の背景として最も主張の少ない地図。</p>
 <p><strong>元データ</strong></p>
 <ul>
-<li><a href="https://maps.gsi.go.jp/vector/" target="_blank">地理院地図Vector</a></li>
+<li><a href="https://mierune.github.io/tiles/" target="_blank">MIERUNE Mono</a>（背景タイル）</li>
+<li><a href="https://maps.gsi.go.jp/vector/" target="_blank">地理院地図Vector</a>（地物）</li>
+<li><a href="https://gsj-seamless.jp/seamless/elev/" target="_blank">産業技術総合研究所シームレス標高タイル</a>（地形表現）</li>
 </ul>
-<p><strong>ライセンス</strong>
-<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></p>
+<p><strong>ライセンス</strong></p>
+<ul>
+<li>背景タイル: MIERUNE Inc. © OpenMapTiles © OpenStreetMap contributors（<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY</a> / <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>）</li>
+<li>地物・地形: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></li>
+</ul>
 <p><strong>配布元</strong>
 <a href="https://amane.ltd/" target="_blank">株式会社AMANE</a></p>
 
@@ -316,7 +557,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ベースマップ詳細","level":"1.3","depth":1,"next":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"path":"vector-tiles.md","ref":"vector-tiles.md","articles":[]},"previous":{"title":"スターターマップ詳細","level":"1.2","depth":1,"path":"samplemaps.md","ref":"samplemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{"siteName":"Kepler.gl 可視化素材集","siteDescription":"Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧。地図可視化の参考資料をまとめています。"},"file":{"path":"basemaps.md","mtime":"2026-05-21T05:24:48.776Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-08-18T16:35:18.492Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ベースマップ詳細","level":"1.3","depth":1,"next":{"title":"ベクタータイル詳細","level":"1.4","depth":1,"path":"vector-tiles.md","ref":"vector-tiles.md","articles":[]},"previous":{"title":"スターターマップ詳細","level":"1.2","depth":1,"path":"samplemaps.md","ref":"samplemaps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["amane-custom"],"root":"./docs","styles":{"website":"styles/website.css"},"pluginsConfig":{"amane-custom":{"siteName":"Kepler.gl 可視化素材集","siteDescription":"Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"株式会社AMANE","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Kepler.gl 可視化素材集","language":"ja","gitbook":"*","description":"Kepler.glで利用可能なベクタータイル、ベースマップ、サンプルマップの素材一覧。地図可視化の参考資料をまとめています。"},"file":{"path":"basemaps.md","mtime":"2026-09-10T06:21:58.371Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-09-28T08:58:34.392Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

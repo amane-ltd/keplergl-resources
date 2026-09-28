@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "honkit build && node scripts/fix-seo.js",
+    "build": "honkit build && node scripts/fix-seo.js && node scripts/inject-auth.js",
     "serve": "honkit serve",
-    "deploy": "npm run build && gh-pages -d _book -r https://github.com/amane-ltd/keplergl-resources.git"
+    "deploy": "REQUIRE_ACCESS_GATE=1 npm run build && gh-pages -d _book -r https://github.com/amane-ltd/keplergl-resources.git",
+    "hash-password": "node scripts/hash-password.js"
   },
   "keywords": [],
   "author": "",

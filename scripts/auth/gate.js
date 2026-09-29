@@ -36,7 +36,11 @@
     '#auth-gate button[type="submit"]:hover { background: #1d4ed8; }',
     '#auth-gate button[type="submit"][disabled] { background: #9ca3af; cursor: default; }',
     '#auth-gate .auth-error { margin: 14px 0 0; font-size: 12px; color: #b91c1c; line-height: 1.6; min-height: 1em; }',
-    '#auth-gate .auth-foot { margin: 20px 0 0; font-size: 11px; color: #9ca3af; text-align: center; }',
+    '#auth-gate .auth-contact { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #e5e7eb;',
+    '  font-size: 11px; color: #6b7280; line-height: 1.7; text-align: center; }',
+    '#auth-gate .auth-contact a { color: #2563eb; text-decoration: none; }',
+    '#auth-gate .auth-contact a:hover { text-decoration: underline; }',
+    '#auth-gate .auth-foot { margin: 10px 0 0; font-size: 11px; color: #9ca3af; text-align: center; }',
     '#auth-logout { position: fixed; right: 14px; bottom: 14px; z-index: 2147483000; padding: 6px 12px;',
     '  font-size: 11px; color: #4b5563; background: rgba(255,255,255,0.94); border: 1px solid #d1d5db;',
     '  border-radius: 999px; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }',
@@ -181,6 +185,9 @@
       '<button type="submit">閲覧する / Enter</button>' +
       '<p class="auth-error" role="alert"></p>' +
       '</form>' +
+      '<p class="auth-contact">アクセス権のご依頼はお問い合わせください。<br>' +
+      '<span lang="en">Contact us to request access.</span><br>' +
+      '<a href="mailto:info@amane.ltd">info@amane.ltd</a></p>' +
       '<p class="auth-foot">株式会社AMANE</p>' +
       '</div>';
     doc.body.appendChild(wrap);

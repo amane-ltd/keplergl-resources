@@ -27,7 +27,7 @@
 | 名称 | 配布元 | ライセンス | URL |
 |------|--------|-----------|-----|
 | 地理院標準地図 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/std_vector.json` |
-| 地理院淡色地図 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/pale_vector.json` |
+| ⭐︎地理院淡色地図 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/pale_vector.json` |
 | 地理院白地図 | [株式会社AMANE](https://amane.ltd/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | `https://raw.githubusercontent.com/amane-ltd/keplergl-resources/refs/heads/main/basemaps/blank_vector.json` |
 
 ## ベクタータイル一覧
